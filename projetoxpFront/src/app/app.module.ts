@@ -8,11 +8,13 @@ import { CadastroUsuarioComponent } from './cadastro-usuario/cadastro-usuario.co
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
+import { CadastroCampeonatoComponent } from './cadastro-campeonato/cadastro-campeonato.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CadastroUsuarioComponent
+    CadastroUsuarioComponent,
+    CadastroCampeonatoComponent
   ],
   imports: [
     BrowserModule,

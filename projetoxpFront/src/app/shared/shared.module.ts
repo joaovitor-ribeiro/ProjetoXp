@@ -4,6 +4,7 @@ import { InputFieldComponent } from './input-field/input-field.component';
 import { ErrorMsgComponent } from './error-msg/error-msg.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TexteareaFieldComponent } from './textearea-field/textearea-field.component';
 
 
 
@@ -11,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   declarations: [
     ErrorMsgComponent,
     InputFieldComponent,
+    TexteareaFieldComponent,
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   ],
   exports: [
     ErrorMsgComponent,
-    InputFieldComponent
+    InputFieldComponent,
+    TexteareaFieldComponent
   ],
 })
 export class SharedModule { }

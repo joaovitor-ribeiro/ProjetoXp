@@ -1,16 +1,16 @@
 package br.com.projetoxp.model.dto;
 
-import java.util.Date;
 import br.com.projetoxp.model.Campeonato;
 
 public class CampeonatoDto {
 	
 	private String nome;
-	private Date dataInicio;
-	private Date dataTermino;
+	private String dataInicio;
+	private String dataTermino;
 	private int time;
 	private Double premiacao;
 	private String adm;
+	private String descricao;
 	private String regra;
 	private String file;
 	
@@ -18,8 +18,8 @@ public class CampeonatoDto {
 		super();
 	}
 	
-	public CampeonatoDto(String nome, Date dataInicio, Date dataTermino, int time, Double premiacao, String adm,
-			String regra, String file) {
+	public CampeonatoDto(String nome, String dataInicio, String dataTermino, int time, Double premiacao, String adm,
+			String descricao, String regra, String file) {
 		super();
 		this.nome = nome;
 		this.dataInicio = dataInicio;
@@ -27,6 +27,7 @@ public class CampeonatoDto {
 		this.time = time;
 		this.premiacao = premiacao;
 		this.adm = adm;
+		this.descricao = descricao;
 		this.regra = regra;
 		this.file = file;
 	}
@@ -34,10 +35,10 @@ public class CampeonatoDto {
 	public String getNome() {
 		return nome;
 	}
-	public Date getDataInicio() {
+	public String getDataInicio() {
 		return dataInicio;
 	}
-	public Date getDataTermino() {
+	public String getDataTermino() {
 		return dataTermino;
 	}
 	public int getTime() {
@@ -57,8 +58,12 @@ public class CampeonatoDto {
 	}
 	
 	public Campeonato converteCampeonato() {
-		Campeonato campeonato = new Campeonato(nome, dataInicio, dataTermino, time, premiacao, adm, regra, file);
+		Campeonato campeonato = new Campeonato(nome, dataInicio, dataTermino, time, premiacao, adm, descricao, regra, file);
 		return campeonato;
+	}
+
+	public String getDescricao() {
+		return descricao;
 	}
 
 }

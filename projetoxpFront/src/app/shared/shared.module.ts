@@ -5,6 +5,7 @@ import { ErrorMsgComponent } from './error-msg/error-msg.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TexteareaFieldComponent } from './textearea-field/textearea-field.component';
+import { CurrencyMaskModule } from 'ngx-currency-mask';
 
 
 
@@ -18,7 +19,7 @@ import { TexteareaFieldComponent } from './textearea-field/textearea-field.compo
     CommonModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   exports: [
     ErrorMsgComponent,

@@ -1,0 +1,19 @@
+<div class="row">
+  <div *ngFor="let campeonato of campeonato$ | async ">
+    <div class="col s4">
+      <div class="card">
+        <div class="card-image">
+          <img class="img" *ngIf="campeonato.file != null" src="../../assets/{{campeonato.file}}">
+          <img class="img" *ngIf="campeonato.file == null" src="../../assets/paz 2.jpg">
+          <span class="card-title">{{campeonato.nome}}</span>
+        </div>
+        <div class="card-content">
+          {{campeonato.descricao}}
+        </div>
+        <div class="card-action">
+          <a href="/campeonato/editar/{{campeonato.id}}">Editar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

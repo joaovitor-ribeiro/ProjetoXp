@@ -8,11 +8,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import br.com.projetoxp.model.Campeonato;
 import br.com.projetoxp.model.Usuario;
-import br.com.projetoxp.model.dto.CampeonatoDto;
 import br.com.projetoxp.model.dto.UsuarioDto;
-import br.com.projetoxp.repository.CampeoantoRepository;
 import br.com.projetoxp.repository.UsuarioRepository;
 import br.com.projetoxp.service.FileUploadService;
 
@@ -22,8 +19,7 @@ public class CadastroController {
 	
 	@Autowired
 	private UsuarioRepository usuarioRepository;
-	@Autowired
-	private CampeoantoRepository campeonatoRepository;
+	
 	@Autowired
 	private FileUploadService fileUploadService;
 	
@@ -33,15 +29,9 @@ public class CadastroController {
 		usuarioRepository.save(usuario);
 	}
 	
-	@PostMapping("/campeonato")
-	public void cadastroCampeonato(@RequestBody CampeonatoDto requisicaoCampeonato) {
-		Campeonato campeonato = requisicaoCampeonato.converteCampeonato();
-		campeonatoRepository.save(campeonato);
-	}
-	
 	@PostMapping("/upload")
 	public void uploadLocal(@RequestParam("file")MultipartFile multipartFile) {
 		fileUploadService.uploadToLocal(multipartFile);
 	}
-
+	
 }

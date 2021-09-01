@@ -4,29 +4,34 @@
 
     <div class="row">
       <app-input-field class="input-field col s12" formControlName="nome" id="nome" label="Nome"
-        [control]="formulario.get('nome')">
+        [control]="formulario.get('nome')" >
       </app-input-field>
     </div>
 
     <div class="row">
       <app-input-field class="input-field col s6" formControlName="dataInicio" type="date" id="dataInicio"
-        label="Data Início" [control]="formulario.get('dataInicio')"></app-input-field>
+        label="Data Início" [control]="formulario.get('dataInicio')" [isReadOnly]="editar"></app-input-field>
 
       <app-input-field class="input-field col s6" formControlName="dataTermino" type="date" id="dataTermino"
-        label="Data Término" [control]="formulario.get('dataTermino')"></app-input-field>
+        label="Data Término" [control]="formulario.get('dataTermino')" [isReadOnly]="editar"></app-input-field>
     </div>
 
     <div class="row">
       <app-input-field class="input-field col s6" formControlName="time" id="time" label="Quantidade de time"
         [control]="formulario.get('time')"></app-input-field>
 
-      <app-input-field class="input-field col s6" formControlName="premiacao" id="premiacao" label="Premiação"
-        [control]="formulario.get('premiacao')"></app-input-field>
+      <app-input-field  class="input-field col s6" formControlName="premiacao" id="premiacao" label="Premiação"
+        [control]="formulario.get('premiacao')" [isReadOnly]="editar"></app-input-field>
     </div>
 
     <div class="row">
       <app-input-field class="input-field col s12" formControlName="adm" type="text" id="adm"
         label="Usuário admnistrador" [control]="formulario.get('adm')"></app-input-field>
+    </div>
+
+    <div class="row">
+      <app-textearea-field class="input-field col s12" formControlName="descricao" id="descricao"
+        label="Descrição" [control]="formulario.get('descricao')"></app-textearea-field>
     </div>
 
     <div class="row">
@@ -38,10 +43,10 @@
       <div class="file-field input-field col s12">
         <div class="btn background">
           <span>Imagem</span>
-          <input formControlName="file" (change)="onChange($event)" type="file">
+          <input (change)="onChange($event)" type="file">
         </div>
         <div class="file-path-wrapper">
-          <input class="file-path validate" type="text" placeholder="Adicione uma foto de capa para o campeonato">
+          <input formControlName="file" class="file-path validate" type="text" placeholder="Adicione uma foto de capa para o campeonato">
         </div>
       </div>
     </div>

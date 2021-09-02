@@ -3,6 +3,7 @@ export class UsuarioDto {
   nick!: string;
   email!: string;
   senha!: string;
+  file!: string;
 }
 
 new UsuarioDto();

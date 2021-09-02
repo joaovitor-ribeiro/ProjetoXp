@@ -5,6 +5,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import br.com.projetoxp.model.dto.UsuarioDto;
+import br.com.projetoxp.repository.CampeoantoRepository;
+import br.com.projetoxp.repository.UsuarioRepository;
+
 @Entity
 public class Usuario {
 	
@@ -14,17 +18,19 @@ public class Usuario {
 	private String nick;
 	private String email;
 	private String senha;
+	private String file;
 	
 	public Usuario() {
 		super();
 	}
 	
-	public Usuario(String nome, String nick, String email, String senha) {
+	public Usuario(String nome, String nick, String email, String senha, String file) {
 		super();
 		this.nome = nome;
 		this.nick = nick;
 		this.email = email;
 		this.senha = senha;
+		this.file = file;
 	}
 
 	public Long getId() {
@@ -58,5 +64,26 @@ public class Usuario {
 		this.senha = senha;
 	}
 	
+	public String getFile() {
+		return file;
+	}
 
+	public void setFile(String file) {
+		this.file = file;
+	}
+
+	public UsuarioDto converteUsuarioDto() {
+		UsuarioDto usuarioDto = new UsuarioDto(nome, nick, email, senha, file);
+		return usuarioDto;
+	}
+	
+	public void atualizar(Long id, UsuarioRepository usuarioRepository) {
+		Usuario usuario = usuarioRepository.getById(id);
+		usuario.setNome(this.nome);
+		usuario.setNick(this.nick);
+		usuario.setEmail(this.email);
+		usuario.setSenha(this.senha);
+		usuario.setFile(this.file);
+	}
+	
 }

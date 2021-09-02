@@ -8,34 +8,39 @@ public class UsuarioDto {
 	private String nick;
 	private String email;
 	private String senha;
+	private String file;
 	
+	public UsuarioDto() {
+		super();
+	}
+	
+	public UsuarioDto(String nome, String nick, String email, String senha, String file) {
+		super();
+		this.nome = nome;
+		this.nick = nick;
+		this.email = email;
+		this.senha = senha;
+		this.file = file;
+	}
+
 	public String getNome() {
 		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
 	}
 	public String getNick() {
 		return nick;
 	}
-	public void setNick(String nick) {
-		this.nick = nick;
-	}
 	public String getEmail() {
 		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
 	}
 	public String getSenha() {
 		return senha;
 	}
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public String getFile() {
+		return file;
 	}
 	
 	public Usuario converteUsuario() {
-		Usuario usuario = new Usuario(nome, nick, email, senha);
+		Usuario usuario = new Usuario(nome, nick, email, senha, file);
 		return usuario;
 	}
 

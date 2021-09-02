@@ -34,6 +34,18 @@
       id="confirmarSenha" type="password" label="Confirmar Senha" [control]="formulario.get('confirmarSenha')"
       ></app-input-field>
     </div>
+    
+    <div class="row">
+     <div class="file-field input-field col s12">
+        <div class="btn background">
+          <span>Imagem</span>
+          <input (change)="onChange($event)" type="file">
+        </div>
+        <div class="file-path-wrapper">
+          <input formControlName="file" class="file-path validate" type="text" placeholder="Adicione uma foto de perfil">
+        </div>
+      </div>
+    </div>
 
     <button type="submit" class="btn corFundo botao">Submit</button>
 

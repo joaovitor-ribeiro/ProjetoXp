@@ -1,20 +1,35 @@
 import { CampeonatoFormComponent } from './campeonato/campeonato-form/campeonato-form.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CadastroUsuarioComponent } from './cadastro-usuario/cadastro-usuario.component';
 import { CampeonatoFormResolver } from './campeonato/guards/campeonatoForm.resolver';
+import { UsuarioFormComponent } from './cadastro-usuario/usuario-form.component';
+import { CampeonatoComponent } from './campeonato/campeonato.component';
+import { CampeonatoResolver } from './campeonato/guards/campeonato.resolver';
 
 const routes: Routes = [
-  { path: 'cadastro/usuario', component: CadastroUsuarioComponent },
-  {
-    path: 'campeonato',
-    loadChildren: () => import('./campeonato/campeonato.module').then(m => m.CampeonatoModule),
-  },
+  // {
+  //   path: 'campeonato',
+  //   loadChildren: () => import('./campeonato/campeonato.module').then(m => m.CampeonatoModule),
+  // },
   {
     path: 'campeonato/editar/:id', component: CampeonatoFormComponent,
     resolve: { form: CampeonatoFormResolver },
   },
-  { path: '**', component: CampeonatoFormComponent }
+  //{ path: '**', component: CampeonatoFormComponent },
+  {
+    path: 'usuario/cadastro', component: UsuarioFormComponent,
+  },
+  {
+    path: 'campeonato/cadastro', component: CampeonatoFormComponent,
+  },
+  {
+    path: 'campeonato', component: CampeonatoComponent,
+    resolve: { campeonato: CampeonatoResolver },
+  },
+  // {
+  //   path: 'usuario',
+  //   loadChildren: () => import('./cadastro-usuario/usuario.module').then(m => m.UsuarioModule),
+  // },
 ];
 
 @NgModule({

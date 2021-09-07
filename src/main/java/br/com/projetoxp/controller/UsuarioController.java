@@ -25,7 +25,7 @@ import br.com.projetoxp.service.FileUploadService;
 @RestController
 @RequestMapping("usuario")
 @CrossOrigin
-public class CadastroController {
+public class UsuarioController {
 	
 	@Autowired
 	private UsuarioRepository usuarioRepository;

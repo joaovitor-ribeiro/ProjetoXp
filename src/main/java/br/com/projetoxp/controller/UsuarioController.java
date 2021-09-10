@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import br.com.projetoxp.model.Campeonato;
 import br.com.projetoxp.model.Usuario;
 import br.com.projetoxp.model.dto.UsuarioDto;
 import br.com.projetoxp.repository.UsuarioRepository;
@@ -58,6 +57,20 @@ public class UsuarioController {
 	@PostMapping("/upload")
 	public void uploadLocal(@RequestParam("file")MultipartFile multipartFile) {
 		fileUploadService.uploadToLocal(multipartFile);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, path = "/login/{email}/{senha}")
+	public boolean login(@PathVariable String email, @PathVariable String senha) {
+		List<Usuario> usuario = usuarioRepository.findByEmail(email);
+		if(!usuario.isEmpty()) {
+			System.out.println(usuario.get(0).getSenha());
+			System.out.println(senha);
+			if(usuario.get(0).getSenha().equals(senha)) {
+				return true;
+			}
+			return false;
+		}
+		return false; 
 	}
 	
 }

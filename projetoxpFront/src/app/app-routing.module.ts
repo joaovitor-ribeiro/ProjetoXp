@@ -1,11 +1,14 @@
-import { CampeonatoFormComponent } from './campeonato/campeonato-form/campeonato-form.component';
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { CampeonatoFormResolver } from './campeonato/guards/campeonatoForm.resolver';
-import { UsuarioFormComponent } from './cadastro-usuario/usuario-form.component';
-import { CampeonatoComponent } from './campeonato/campeonato.component';
-import { CampeonatoResolver } from './campeonato/guards/campeonato.resolver';
-import { UsuarioFormResolver } from './cadastro-usuario/guards/usuarioForm.resolver';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
+import { CampeonatoFormComponent } from "./campeonato/campeonato-form/campeonato-form.component";
+import { CampeonatoComponent } from "./campeonato/campeonato.component";
+import { CampeonatoResolver } from "./campeonato/guards/campeonato.resolver";
+import { CampeonatoFormResolver } from "./campeonato/guards/campeonatoForm.resolver";
+import { UsuarioFormComponent } from "./usuario/form/usuario-form.component";
+import { UsuarioFormResolver } from "./usuario/guards/usuarioForm.resolver";
+import { LoginComponent } from "./usuario/login/login/login.component";
+import { LogoutComponent } from "./usuario/logout/logout/logout.component";
+
 
 const routes: Routes = [
   // {
@@ -35,6 +38,8 @@ const routes: Routes = [
   //   path: 'usuario',
   //   loadChildren: () => import('./cadastro-usuario/usuario.module').then(m => m.UsuarioModule),
   // },
+  { path: 'login', component: LoginComponent },
+  { path: 'logout', component: LogoutComponent },
 ];
 
 @NgModule({

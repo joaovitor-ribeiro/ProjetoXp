@@ -3,15 +3,21 @@ import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { SharedModule } from "../shared/shared.module";
+import { UsuarioFormComponent } from "./form/usuario-form.component";
 import { UsuarioFormResolver } from "./guards/usuarioForm.resolver";
+import { LoginComponent } from "./login/login/login.component";
+import { LogoutComponent } from "./logout/logout/logout.component";
 import { UsuarioRoutingModule } from "./router/usuario-routing.module";
-import { UsuarioFormService } from "./service/cadastro-usuario.service";
-import { UsuarioFormComponent } from "./usuario-form.component";
+import { AuthenticationService } from "./service/authentication.service";
+import { UsuarioFormService } from "./service/usuario.service";
+
 
 
 @NgModule({
   declarations: [
     UsuarioFormComponent,
+    LoginComponent,
+    LogoutComponent,
   ],
   imports: [
     CommonModule,
@@ -24,6 +30,7 @@ import { UsuarioFormComponent } from "./usuario-form.component";
   providers: [
     UsuarioFormService,
     UsuarioFormResolver,
+    AuthenticationService
   ]
 })
 export class UsuarioModule { }

@@ -24,7 +24,7 @@ export class UsuarioFormComponent extends BaseFormComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private cadastroUsuarioService: UsuarioFormService,
+    private usuarioFormService: UsuarioFormService,
     private service: UploadFileService,
     private route: ActivatedRoute
   ) {
@@ -61,7 +61,8 @@ export class UsuarioFormComponent extends BaseFormComponent implements OnInit {
       nome: usuario.nome,
       nick: usuario.nick,
       email: usuario.email,
-      senha: usuario.senha    
+      senha: usuario.senha,
+      file: usuario.file
     });
   }
 
@@ -86,16 +87,26 @@ export class UsuarioFormComponent extends BaseFormComponent implements OnInit {
   }
 
   submit() {
-    console.log('submit');
     this.preenchendoUsuarioDto();
-      if(this.nameFile != ''){
+    if(this.editar){
+      if(this.nameFile !== this.formulario.get('file')?.value){
         this.onUpload();
       }
-      this.cadastroUsuarioService.cadastroUsuario(this.usuarioDto).subscribe(
+      this.usuarioFormService.atualizarUsuario(this.id,this.usuarioDto).subscribe(
+        sucess => (this.formulario.reset(),this.editar = false),
+        error => console.log('error'),
+        () => console.log('request completo')
+      );
+    }else{
+      if(this.nameFile !== this.formulario.get('file')?.value){
+        this.onUpload();
+      }
+      this.usuarioFormService.cadastroUsuario(this.usuarioDto).subscribe(
         sucess => this.formulario.reset(),
         error => console.log('error'),
         () => console.log('request completo')
       );
+    }
   }
 
 }

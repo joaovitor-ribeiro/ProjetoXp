@@ -5,6 +5,7 @@ import { CampeonatoFormResolver } from './campeonato/guards/campeonatoForm.resol
 import { UsuarioFormComponent } from './cadastro-usuario/usuario-form.component';
 import { CampeonatoComponent } from './campeonato/campeonato.component';
 import { CampeonatoResolver } from './campeonato/guards/campeonato.resolver';
+import { UsuarioFormResolver } from './cadastro-usuario/guards/usuarioForm.resolver';
 
 const routes: Routes = [
   // {
@@ -18,6 +19,10 @@ const routes: Routes = [
   //{ path: '**', component: CampeonatoFormComponent },
   {
     path: 'usuario/cadastro', component: UsuarioFormComponent,
+  },
+  {
+    path: 'usuario/editar/:id', component: UsuarioFormComponent,
+    resolve: { form: UsuarioFormResolver },
   },
   {
     path: 'campeonato/cadastro', component: CampeonatoFormComponent,

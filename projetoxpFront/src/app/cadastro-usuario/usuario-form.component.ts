@@ -64,6 +64,7 @@ export class UsuarioFormComponent extends BaseFormComponent implements OnInit {
       senha: usuario.senha,
       file: usuario.file
     });
+    this.nameFile = usuario.file;
   }
 
   onChange(event: any) {

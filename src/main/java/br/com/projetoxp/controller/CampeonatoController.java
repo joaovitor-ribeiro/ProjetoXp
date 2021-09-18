@@ -17,8 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import br.com.projetoxp.model.Campeonato;
+import br.com.projetoxp.model.Time;
+import br.com.projetoxp.model.TimesCampeonato;
 import br.com.projetoxp.model.dto.CampeonatoDto;
 import br.com.projetoxp.repository.CampeoantoRepository;
+import br.com.projetoxp.repository.TimeRepository;
+import br.com.projetoxp.repository.TimesCampeonatoRepository;
+import br.com.projetoxp.service.TimeCampeonatoService;
 import br.com.projetoxp.service.FileUploadService;
 
 @RestController
@@ -28,6 +33,12 @@ public class CampeonatoController {
 	
 	@Autowired
 	private CampeoantoRepository campeonatoRepository;
+	@Autowired
+	private TimeRepository timeRepository;
+	@Autowired
+	private TimesCampeonatoRepository timesCampeonatoRepository;
+	@Autowired
+	private TimeCampeonatoService timesCampeonatoService;
 	
 	@Autowired
 	private FileUploadService fileUploadService;
@@ -35,6 +46,7 @@ public class CampeonatoController {
 	@RequestMapping(method = RequestMethod.POST, path = "cadastro")
 	public void cadastroCampeonato(@RequestBody CampeonatoDto campeonatoDto) {
 		Campeonato campeonato = campeonatoDto.converteCampeonato();
+		campeonato.setTimesInscritos(0);
 		campeonatoRepository.save(campeonato);
 	}
 	
@@ -53,15 +65,45 @@ public class CampeonatoController {
 		return null;
 	}
 	
-	@RequestMapping(method = RequestMethod.PUT, path = "/atualizar/{id}")
-	@Transactional
-	public void atualizar(@PathVariable Long id, @RequestBody Campeonato campeonato){
-		campeonato.atualizar(id, campeonatoRepository);
-	}
-
 	@PostMapping("/upload")
 	public void uploadLocal(@RequestParam("file")MultipartFile multipartFile) {
 		fileUploadService.uploadToLocal(multipartFile);
 	}
 	
+	@RequestMapping(method = RequestMethod.PUT, path = "/atualizar/{id}")
+	@Transactional
+	public void atualizar(@PathVariable Long id, @RequestBody Campeonato campeonato){
+		campeonato.atualizar(id, campeonatoRepository);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, path = "cadastro/time/{id}")
+	public void cadastroCampeonato(@PathVariable Long id, @RequestBody Time time) {
+		Optional<Campeonato> optionalCampeonato = campeonatoRepository.findById(id);
+		if(optionalCampeonato.isPresent()) {
+			Campeonato campeonato = optionalCampeonato.get();
+			
+			campeonato.atualizarTimesInscritos(id, campeonatoRepository);
+			TimesCampeonato timesCampeonato = timesCampeonatoService.create(campeonato, time);
+			
+			List<TimesCampeonato> timesInscritos = timesCampeonatoRepository.findByIdCampeonato(id);
+			timesCampeonatoService.atualizarPosicao(timesInscritos, campeonato);
+			
+			timesCampeonatoRepository.save(timesCampeonato);
+		}
+		timeRepository.save(time);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, path = "participantes/{id}")
+	public List<TimesCampeonato> listarCampeonato(@PathVariable Long id) {
+		return timesCampeonatoRepository.findByIdCampeonato(id);
+	}
+	
+	@RequestMapping(method = RequestMethod.PUT, path = "/atualizar/posicao")
+	@Transactional
+	public void atualizarPosicao(@RequestBody String IdTime){
+		TimesCampeonato time;
+		time = timesCampeonatoRepository.findByIdTime(IdTime);
+		time.atualizar(time);
+	}
+
 }

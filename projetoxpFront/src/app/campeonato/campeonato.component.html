@@ -1,13 +1,18 @@
 <div class="row">
   <div *ngFor="let campeonato of campeonato$ | async ">
     <div class="col s4">
+
       <div class="card">
         <div class="card-image">
-          <img class="img" *ngIf="campeonato.file != null" src="../../assets/{{campeonato.file}}">
-          <img class="img" *ngIf="campeonato.file == null" src="../../assets/paz 2.jpg">
-          <span class="card-title">{{campeonato.nome}}</span>
+          <a href="/campeonato/detalhes/{{campeonato.id}}">
+            <img class="img" *ngIf="campeonato.file != null" src="../../assets/{{campeonato.file}}">
+          </a>
+          <a href="/campeonato/detalhes/{{campeonato.id}}">
+            <img class="img" *ngIf="campeonato.file == null" src="../../assets/paz 2.jpg">
+          </a>
+          <span class="card-title" style="color: black;">{{campeonato.nome}}</span>
         </div>
-        <div class="card-content">
+        <div class="card-content" style="color: black;">
           {{campeonato.descricao}}
         </div>
         <div class="card-action">

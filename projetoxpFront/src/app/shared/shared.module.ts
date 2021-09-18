@@ -5,7 +5,8 @@ import { ErrorMsgComponent } from './error-msg/error-msg.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TexteareaFieldComponent } from './textearea-field/textearea-field.component';
-import { CurrencyMaskModule } from 'ngx-currency-mask';
+import { SelectFieldComponent } from './select-field/select-field.component';
+import { NgxMaskModule } from 'ngx-mask';
 
 
 
@@ -14,17 +15,21 @@ import { CurrencyMaskModule } from 'ngx-currency-mask';
     ErrorMsgComponent,
     InputFieldComponent,
     TexteareaFieldComponent,
+    SelectFieldComponent,
   ],
   imports: [
     CommonModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxMaskModule,
+    NgxMaskModule.forRoot(),
   ],
   exports: [
     ErrorMsgComponent,
     InputFieldComponent,
-    TexteareaFieldComponent
+    TexteareaFieldComponent,
+    SelectFieldComponent
   ],
 })
 export class SharedModule { }

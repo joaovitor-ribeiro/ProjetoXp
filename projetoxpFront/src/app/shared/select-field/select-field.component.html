@@ -1,0 +1,14 @@
+<div class="form-group">
+  <label [attr.for]="id">{{ label }}</label>
+  <select [id]="id" [(ngModel)]="value">
+    <option value="4">4</option>
+    <option value="8">8</option>
+    <option value="16">16</option>
+    <option value="32">32</option>
+    <option value="64">64</option>
+    <option value="128">128</option>
+  </select>
+  <app-error-msg [control]="control" [label]="label"></app-error-msg>
+</div>
+
+

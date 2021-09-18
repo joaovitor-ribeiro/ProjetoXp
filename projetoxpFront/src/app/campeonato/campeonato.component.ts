@@ -13,6 +13,7 @@ export class CampeonatoComponent implements OnInit {
 
   campeonato$!: Observable<Campeonato[]>
   inscricao!: Subscription;
+  id!: string
 
   constructor(private camopeonatoService: CampeonatoService, private route: ActivatedRoute, private router: Router) { }
 
@@ -20,6 +21,7 @@ export class CampeonatoComponent implements OnInit {
     this.inscricao = this.route.data.subscribe(
       (list) => {
         this.campeonato$ = of(list.campeonato);
+        this.id = list.campeonato.id;
       }
     );
   }

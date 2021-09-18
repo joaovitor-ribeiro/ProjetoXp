@@ -46,6 +46,7 @@ export class CampeonatoDetalhesComponent  implements OnInit, OnDestroy {
         })
       }
     );
+    console.log(this.campeonatoDto);
 
   }
 
@@ -67,14 +68,11 @@ export class CampeonatoDetalhesComponent  implements OnInit, OnDestroy {
     let contador = 0;
     let times = this.quantidadeTime;
     for (let i = 0; i < this.quantidadeTime; i++) {
-      // times = times / 2;
       if(times > 1){
         contador++;
       }
       times = times / 2;
     }
-    console.log('contador');
-    console.log(contador);
     return new Array(contador);
   }
 

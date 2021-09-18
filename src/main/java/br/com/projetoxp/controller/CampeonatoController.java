@@ -65,6 +65,11 @@ public class CampeonatoController {
 		return null;
 	}
 	
+	@PostMapping("/upload")
+	public void uploadLocal(@RequestParam("file")MultipartFile multipartFile) {
+		fileUploadService.uploadToLocal(multipartFile);
+	}
+	
 	@RequestMapping(method = RequestMethod.PUT, path = "/atualizar/{id}")
 	@Transactional
 	public void atualizar(@PathVariable Long id, @RequestBody Campeonato campeonato){

@@ -11,7 +11,6 @@ import { CampeonatoResolver } from './campeonato/guards/campeonato.resolver';
 import { UsuarioFormResolver } from './cadastro-usuario/guards/usuarioForm.resolver';
 
 const routes: Routes = [
-  { path: 'cadastro/usuario', component: CadastroUsuarioComponent },
   { path: 'cadastro/time', component: TimeFormComponent },
   // {
   //   path: 'campeonato',

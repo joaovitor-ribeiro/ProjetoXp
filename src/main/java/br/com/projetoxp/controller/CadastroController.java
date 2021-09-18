@@ -31,6 +31,7 @@ public class CadastroController {
 	
 	@PostMapping("/upload")
 	public void uploadLocal(@RequestParam("file")MultipartFile multipartFile) {
+		System.out.println(multipartFile);
 		fileUploadService.uploadToLocal(multipartFile);
 	}
 	

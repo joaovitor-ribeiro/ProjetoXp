@@ -5,7 +5,7 @@ import { CampeonatoDto } from '../model/campeonatoDto.model';
 import { CampeonatoService } from '../service/campeonato.service';
 
 @Injectable()
-export class CampeonatoFormResolver implements Resolve<CampeonatoDto> {
+export class CampeonatoDetalhesResolver implements Resolve<CampeonatoDto> {
 
     constructor(private campeonatoService: CampeonatoService){}
 

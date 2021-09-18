@@ -1,3 +1,4 @@
+import { TimeFormComponent } from './time/time-form/time-form.component';
 import { CampeonatoModule } from './campeonato/campeonato.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -8,11 +9,13 @@ import { CadastroUsuarioComponent } from './cadastro-usuario/cadastro-usuario.co
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     AppComponent,
     CadastroUsuarioComponent,
+    TimeFormComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +25,8 @@ import { SharedModule } from './shared/shared.module';
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    CampeonatoModule
+    CampeonatoModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

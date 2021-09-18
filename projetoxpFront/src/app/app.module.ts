@@ -2,14 +2,13 @@ import { TimeFormComponent } from './time/time-form/time-form.component';
 import { CampeonatoModule } from './campeonato/campeonato.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CadastroUsuarioComponent } from './cadastro-usuario/cadastro-usuario.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { UsuarioModule } from './cadastro-usuario/usuario.module';
 
 @NgModule({
   declarations: [
@@ -26,6 +25,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     SharedModule,
     CampeonatoModule,
+    UsuarioModule
     BrowserAnimationsModule
   ],
   providers: [],

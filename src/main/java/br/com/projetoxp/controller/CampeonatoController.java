@@ -8,10 +8,13 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import br.com.projetoxp.model.Campeonato;
 import br.com.projetoxp.model.Time;
@@ -21,6 +24,7 @@ import br.com.projetoxp.repository.CampeoantoRepository;
 import br.com.projetoxp.repository.TimeRepository;
 import br.com.projetoxp.repository.TimesCampeonatoRepository;
 import br.com.projetoxp.service.TimeCampeonatoService;
+import br.com.projetoxp.service.FileUploadService;
 
 @RestController
 @RequestMapping("campeonato")
@@ -35,6 +39,9 @@ public class CampeonatoController {
 	private TimesCampeonatoRepository timesCampeonatoRepository;
 	@Autowired
 	private TimeCampeonatoService timesCampeonatoService;
+	
+	@Autowired
+	private FileUploadService fileUploadService;
 	
 	@RequestMapping(method = RequestMethod.POST, path = "cadastro")
 	public void cadastroCampeonato(@RequestBody CampeonatoDto campeonatoDto) {

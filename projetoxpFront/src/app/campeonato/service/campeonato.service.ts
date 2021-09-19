@@ -24,12 +24,4 @@ export class CampeonatoService {
     return this.http.get<CampeonatoDto>(this.XP+'/editar/' + id);
   }
 
-  public getTimesParticipantes(id:any): Observable<TimesParticipantes[]> {
-    return this.http.get<TimesParticipantes[]>(this.XP+'/participantes/' + id);
-  }
-
-  atualizarPosicao(idTime: any) {
-    return this.http.put(this.XP+'/atualizar/posicao', idTime).pipe(take(1));
-  }
-
 }

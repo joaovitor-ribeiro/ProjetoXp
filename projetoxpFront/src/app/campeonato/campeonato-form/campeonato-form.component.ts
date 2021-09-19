@@ -79,7 +79,7 @@ export class CampeonatoFormComponent extends BaseFormComponent implements OnInit
 
   onUpload() {
     if (this.files && this.files.size > 0) {
-      this.service.upload(this.files);
+      this.service.upload(this.files, 'campeonato');
     }
   }
 

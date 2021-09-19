@@ -11,21 +11,21 @@ public class TimesCampeonato {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private Long idCampeonato;
-	private String idTime;
+	private String timeCapitao;
 	private String nomeTime;
-	private String nomeTimePosicao;
+	private String capitao;
 	private int posicao;
 
 	public TimesCampeonato() {
 		super();
 	}
 	
-	public TimesCampeonato(Long idCampeonato, String idTime, String nomeTime, String nomeTimePosicao, int posicao) {
+	public TimesCampeonato(Long idCampeonato, String timeCapitao, String nomeTime, String capitao, int posicao) {
 		super();
 		this.idCampeonato = idCampeonato;
-		this.idTime = idTime;
+		this.timeCapitao = timeCapitao;
 		this.nomeTime = nomeTime;
-		this.nomeTimePosicao = nomeTimePosicao;
+		this.capitao = capitao;
 		this.posicao = posicao;
 	}
 
@@ -45,20 +45,12 @@ public class TimesCampeonato {
 		this.idCampeonato = idCampeonato;
 	}
 
-	public String getIdTime() {
-		return idTime;
+	public String getTimeCapitao() {
+		return timeCapitao;
 	}
 
-	public void setIdTime(String idTime) {
-		this.idTime = idTime;
-	}
-
-	public String getNomeTimePosicao() {
-		return nomeTimePosicao;
-	}
-
-	public void setNomeTimePosicao(String nomeTime) {
-		this.nomeTimePosicao = nomeTime;
+	public void setTimeCapitao(String timeCapitao) {
+		this.timeCapitao = timeCapitao;
 	}
 
 	public int getPosicao() {
@@ -79,6 +71,14 @@ public class TimesCampeonato {
 
 	public void atualizar(TimesCampeonato time) {
 		time.setPosicao(time.getPosicao() / 2);
+	}
+
+	public String getCapitao() {
+		return capitao;
+	}
+
+	public void setCapitao(String capitao) {
+		this.capitao = capitao;
 	}
 
 }

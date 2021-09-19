@@ -12,7 +12,6 @@ import { CampeonatoFormService } from './service/campeonato-form.service';
 import { CampeonatoFormResolver } from './guards/campeonatoForm.resolver';
 import { CampeonatoDetalhesComponent } from './campeonato-detalhes/campeonato-detalhes.component';
 import {MatTableModule} from '@angular/material/table';
-import {MatGridListModule} from '@angular/material/grid-list';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatTabsModule} from '@angular/material/tabs';
 import { CampeonatoDetalhesResolver } from './guards/campeonato-detalhes.resolver';
@@ -33,7 +32,6 @@ import {MatSelectModule} from '@angular/material/select';
     SharedModule,
     CampeonatoRoutingModule,
     MatTableModule,
-    MatGridListModule,
     MatSidenavModule,
     MatTabsModule,
     MatSelectModule

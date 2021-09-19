@@ -12,7 +12,6 @@ public class CampeonatoDto {
 	private String adm;
 	private String descricao;
 	private String regra;
-	private int timesInscritos;
 	private String file;
 	
 	public CampeonatoDto() {
@@ -56,10 +55,6 @@ public class CampeonatoDto {
 	}
 	public String getRegra() {
 		return regra;
-	}
-	
-	public int getTimesInscritos() {
-		return timesInscritos;
 	}
 	
 	public String getFile() {

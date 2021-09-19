@@ -68,14 +68,13 @@ export class UsuarioFormComponent extends BaseFormComponent implements OnInit {
   }
 
   onChange(event: any) {
-    console.log(event)
     this.nameFile = event.srcElement.files[0].name;
     this.files = event.srcElement.files[0];
   }
 
   onUpload() {
     if (this.files && this.files.size > 0) {
-      this.service.upload(this.files);
+      this.service.upload(this.files, 'usuario');
     }
   }
 

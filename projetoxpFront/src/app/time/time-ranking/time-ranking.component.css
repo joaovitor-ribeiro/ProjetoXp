@@ -1,0 +1,18 @@
+.teste{
+  width: 100px;
+  height: 100px;
+  float: left;
+}
+
+.mat-column-pontuacao {
+  text-align: right;
+  font-weight: bold;
+}
+
+.mat-column-nome {
+  text-align: left;
+}
+
+.mat-column-file {
+  text-align: left;
+}

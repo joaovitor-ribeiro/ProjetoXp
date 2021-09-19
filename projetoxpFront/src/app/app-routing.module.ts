@@ -1,3 +1,4 @@
+import { TimeRankingComponent } from './time/time-ranking/time-ranking.component';
 import { TimeFormComponent } from './time/time-form/time-form.component';
 import { CampeonatoFormComponent } from './campeonato/campeonato-form/campeonato-form.component';
 import { NgModule } from '@angular/core';
@@ -11,7 +12,8 @@ import { CampeonatoResolver } from './campeonato/guards/campeonato.resolver';
 import { UsuarioFormResolver } from './cadastro-usuario/guards/usuarioForm.resolver';
 
 const routes: Routes = [
-  { path: 'cadastro/time', component: TimeFormComponent },
+  { path: 'time/:id/cadastro', component: TimeFormComponent },
+  { path: 'ranking/time', component: TimeRankingComponent },
   // {
   //   path: 'campeonato',
   //   loadChildren: () => import('./campeonato/campeonato.module').then(m => m.CampeonatoModule),

@@ -6,7 +6,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import br.com.projetoxp.model.dto.UsuarioDto;
-import br.com.projetoxp.repository.CampeoantoRepository;
 import br.com.projetoxp.repository.UsuarioRepository;
 
 @Entity

@@ -7,13 +7,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
 import { UsuarioModule } from './cadastro-usuario/usuario.module';
-import { TimeFormComponent } from './time/time-form/time-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TimeModule } from './time/time.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TimeFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,6 +24,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SharedModule,
     CampeonatoModule,
     UsuarioModule,
+    TimeModule,
     BrowserAnimationsModule
   ],
   providers: [],

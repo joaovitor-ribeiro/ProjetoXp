@@ -1,3 +1,4 @@
+import { CampeonatoDetalhesComponent } from './campeonato-detalhes/campeonato-detalhes.component';
 import { CampeonatoFormResolver } from './guards/campeonatoForm.resolver';
 import { CampeonatoFormComponent } from './campeonato-form/campeonato-form.component';
 import { CampeonatoComponent } from './campeonato.component';
@@ -12,6 +13,9 @@ const campeonatoRoutes = [
       {
         path: 'campeonato/editar/:id', component: CampeonatoFormComponent,
         resolve: { form: CampeonatoFormResolver },
+      },
+      {
+        path: 'campeonato/detalhes', component: CampeonatoDetalhesComponent,
       },
     ],
     resolve: { campeonato : CampeonatoResolver },

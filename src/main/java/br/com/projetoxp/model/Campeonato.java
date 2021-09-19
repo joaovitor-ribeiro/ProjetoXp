@@ -21,6 +21,7 @@ public class Campeonato {
 	private String adm;
 	private String descricao;
 	private String regra;
+	private int timesInscritos;
 	private String file;
 	
 	public Campeonato() {
@@ -112,7 +113,14 @@ public class Campeonato {
 	public void setRegra(String regra) {
 		this.regra = regra;
 	}
-
+	
+	public int getTimesInscritos() {
+		return timesInscritos;
+	}
+	
+	public void setTimesInscritos(int timesInscritos) {
+		this.timesInscritos = timesInscritos;
+	}
 	public String getFile() {
 		return file;
 	}
@@ -135,5 +143,15 @@ public class Campeonato {
 		campeonato.setRegra(this.regra);
 		campeonato.setFile(this.file);
 	}
+
+	public void atualizarTimesInscritos(Long id, CampeoantoRepository campeonatoRepository) {
+		Campeonato campeonato = campeonatoRepository.getById(id);
+		if(campeonato.getTimesInscritos() >= 1) {
+			campeonato.setTimesInscritos(campeonato.getTimesInscritos() + 1);
+		}else {
+			campeonato.setTimesInscritos(1);
+		}
+	}
+
 
 }

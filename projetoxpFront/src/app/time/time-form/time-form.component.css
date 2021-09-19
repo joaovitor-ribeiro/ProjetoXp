@@ -1,0 +1,10 @@
+.botao{
+  height: 50px;
+  width: 150px;
+  float: right;
+  margin-bottom: 25px;
+}
+
+.background{
+  background-color: #a3cfec;
+}

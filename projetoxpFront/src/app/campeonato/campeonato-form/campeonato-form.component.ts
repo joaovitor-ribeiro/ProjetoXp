@@ -69,6 +69,7 @@ export class CampeonatoFormComponent extends BaseFormComponent implements OnInit
       regra: campeonato.regra,
       file: campeonato.file
     });
+    this.nameFile = campeonato.file;
   }
 
   onChange(event: any) {
@@ -85,7 +86,7 @@ export class CampeonatoFormComponent extends BaseFormComponent implements OnInit
   submit() {
     this.preenchendoCampeonatoDto();
     if(this.editar){
-      if(this.nameFile !== this.formulario.get('file')?.value){
+      if(this.nameFile != this.formulario.get('file')?.value){
         this.onUpload();
       }
       this.campeonatoFormService.atualizarCampeonato(this.id, this.campeonatoDto).subscribe(

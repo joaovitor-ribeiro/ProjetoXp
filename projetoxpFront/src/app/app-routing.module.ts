@@ -5,12 +5,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { CampeonatoFormResolver } from './campeonato/guards/campeonatoForm.resolver';
 import { CampeonatoDetalhesComponent } from './campeonato/campeonato-detalhes/campeonato-detalhes.component';
 import { CampeonatoDetalhesResolver } from './campeonato/guards/campeonato-detalhes.resolver';
-import { UsuarioFormComponent } from './cadastro-usuario/usuario-form.component';
 import { CampeonatoComponent } from './campeonato/campeonato.component';
 import { CampeonatoResolver } from './campeonato/guards/campeonato.resolver';
-import { UsuarioFormResolver } from './cadastro-usuario/guards/usuarioForm.resolver';
 import { LoginComponent } from "./usuario/login/login/login.component";
 import { LogoutComponent } from "./usuario/logout/logout/logout.component";
+import { UsuarioFormComponent } from './usuario/form/usuario-form.component';
+import { UsuarioFormResolver } from './usuario/guards/usuarioForm.resolver';
 
 const routes: Routes = [
   { path: 'cadastro/time', component: TimeFormComponent },
@@ -41,7 +41,7 @@ const routes: Routes = [
     path: 'campeonato/detalhes/:id', component: CampeonatoDetalhesComponent,
     resolve: { detalhes: CampeonatoDetalhesResolver },
   },
-  { path: '**', component: CampeonatoFormComponent }
+  //{ path: '**', component: CampeonatoFormComponent },
   // {
   //   path: 'usuario',
   //   loadChildren: () => import('./cadastro-usuario/usuario.module').then(m => m.UsuarioModule),

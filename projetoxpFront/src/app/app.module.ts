@@ -6,9 +6,9 @@ import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
-import { UsuarioModule } from './cadastro-usuario/usuario.module';
 import { TimeFormComponent } from './time/time-form/time-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { UsuarioModule } from './usuario/usuario.module';
 
 @NgModule({
   declarations: [

@@ -1,17 +1,11 @@
-package br.com.projetoxp.model;
+package br.com.projetoxp.model.dto;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import br.com.projetoxp.model.Time;
 
-@Entity
-public class Time {
+public class TimeDto {
 	
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
 	private String timeCapitao;
-	private Long    idCampeonato;
+	private Long   idCampeonato;
 	private String nome;
 	private String capitao;
 	private String jogador2;
@@ -21,37 +15,15 @@ public class Time {
 	private int    pontuacao;
 	private String file;
 	
-	public Time() {
+	public TimeDto() {
 		super();
 	}
-	
-	public Time(String timeCapitao, Long idCampeonato, String nome, String capitao, String jogador2, String jogador3,
-			String jogador4, String jogador5, int pontuacao, String file) {
-		super();
-		this.timeCapitao = timeCapitao;
-		this.idCampeonato = idCampeonato;
-		this.nome = nome;
-		this.capitao = capitao;
-		this.jogador2 = jogador2;
-		this.jogador3 = jogador3;
-		this.jogador4 = jogador4;
-		this.jogador5 = jogador5;
-		this.pontuacao = pontuacao;
-		this.file = file;
-	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-	public String getTimeCapitao() {
+	public String getIdTime() {
 		return timeCapitao;
 	}
 
-	public void setTimeCapitao(String idTime) {
+	public void setIdTime(String idTime) {
 		this.timeCapitao = idTime;
 	}
 	public Long getIdCampeonato() {
@@ -114,5 +86,9 @@ public class Time {
 		this.pontuacao = pontuacao;
 	}
 
-
+	public Time converteTime() {
+		Time time = new Time(timeCapitao, idCampeonato, nome, capitao, jogador2, jogador3, jogador4, jogador5, pontuacao, file);
+		return time;
+	}
+	
 }

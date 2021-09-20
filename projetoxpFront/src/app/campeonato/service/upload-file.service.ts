@@ -10,22 +10,20 @@ export class UploadFileService {
 
   constructor(private http: HttpClient) { }
 
-  private readonly XP = `${environment.XP}usuario`
+  private readonly XP = `${environment.XP}upload`
 
-  upload(file: File) {
-    console.log(file)
+  upload(file: File, local: string) {
     const formData = new FormData();
     formData.append('file', file, file.name);
-    this.cadastroFile(formData).subscribe(
+    this.cadastroFile(formData, local).subscribe(
       sucess => console.log('sucesso'),
       error => console.log(error),
       () => console.log('request completo')
     );
   }
 
-  public cadastroFile(file: FormData) {
-    console.log(file);
-    return this.http.post(this.XP+'/upload', file).pipe(take(1));
+  public cadastroFile(file: FormData, local: string) {
+    return this.http.post(this.XP+`/${local}`, file).pipe(take(1));
   }
 
 }

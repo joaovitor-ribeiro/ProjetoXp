@@ -11,9 +11,10 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 public class FileUploadService {
 	
-	private String uploadFolderPath = "C:\\Dev\\git\\editar_usuario\\projetoxp\\projetoxpFront\\src\\assets\\";
+	private String uploadFolderPath;
 	
-	public void uploadToLocal(MultipartFile file) {
+	public void uploadToLocal(MultipartFile file, String local) {
+		uploadFolderPath = "C:\\Users\\joaos\\Downloads\\projetoxp\\projetoxpFront\\src\\assets\\" + local + "\\";
 		try {
 			byte[] data = file.getBytes();
 			Path path = Paths.get(uploadFolderPath + file.getOriginalFilename());

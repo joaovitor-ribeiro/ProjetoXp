@@ -9,11 +9,11 @@ import { SharedModule } from './shared/shared.module';
 import { TimeFormComponent } from './time/time-form/time-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UsuarioModule } from './usuario/usuario.module';
+import { TimeModule } from './time/time.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TimeFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,6 +25,7 @@ import { UsuarioModule } from './usuario/usuario.module';
     SharedModule,
     CampeonatoModule,
     UsuarioModule,
+    TimeModule,
     BrowserAnimationsModule
   ],
   providers: [],

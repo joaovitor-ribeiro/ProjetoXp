@@ -1,8 +1,9 @@
 export class TimesParticipantes {
-  id!: string;
+  id!: number;
   idCampeonato!: string;
-  idTime!: string;
+  timeCapitao!: string;
   nomeTime!: string;
+  capitao!: string;
   nomeTimePosicao!: string;
   posicao!: number;
 }

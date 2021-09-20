@@ -1,12 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CampeonatoDto } from '../model/campeonatoDto.model';
 import { CampeonatoService } from '../service/campeonato.service';
-import { BaseFormComponent } from '../../shared/base-form/base-form.component';
-import { Time } from '../../time/model/time.model';
 import { TimesParticipantes } from '../model/TimesParticipates.model';
+import { TimeService } from 'src/app/time/service/time.service';
 
 @Component({
   selector: 'app-campeonato-detalhes',
@@ -14,7 +13,10 @@ import { TimesParticipantes } from '../model/TimesParticipates.model';
   styleUrls: ['./campeonato-detalhes.component.scss']
 })
 
+
 export class CampeonatoDetalhesComponent  implements OnInit, OnDestroy {
+
+  displayedColumns: string[] = ['id', 'name', 'capitao'];
 
   timesParticipantes!: TimesParticipantes[]
   timesParticipantesA!: string;
@@ -27,11 +29,14 @@ export class CampeonatoDetalhesComponent  implements OnInit, OnDestroy {
   tamanho!: number;
   index = 0;
   j = 0;
+  cadastrarTime = false;
   myMap = new Map();
+  edit = false;
 
   constructor(
-    private campeonatoService: CampeonatoService,
+    private timeService: TimeService,
     private route: ActivatedRoute,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -39,15 +44,13 @@ export class CampeonatoDetalhesComponent  implements OnInit, OnDestroy {
       (campeonato) => {
         this.campeonatoDto = (campeonato.detalhes);
         this.route.params.subscribe(params =>{
-          this.campeonatoService.getTimesParticipantes(params['id']).subscribe(
+          this.timeService.getTimesParticipantes(params['id']).subscribe(
             result => this.preencheTimesParticipantes(result)
           );
           this.id = params['id'];
         })
       }
     );
-    console.log(this.campeonatoDto);
-
   }
 
   ngOnDestroy(): void {
@@ -57,6 +60,9 @@ export class CampeonatoDetalhesComponent  implements OnInit, OnDestroy {
   preencheTimesParticipantes(result: TimesParticipantes[]): void {
     this.timesParticipantes = result;
     this.tamanho = result.length;
+    if(result.length == this.campeonatoDto.time){
+      this.cadastrarTime = true;
+    }
     if(this.tamanho % 2 == 0 || this.tamanho == 1){
       this.quantidadeTime = this.tamanho;
     }else{
@@ -82,9 +88,6 @@ export class CampeonatoDetalhesComponent  implements OnInit, OnDestroy {
     }else if(this.rodada > 1){
       this.rodada = this.rodada / 2;
     }
-    console.log('index');
-    console.log(index);
-    console.log(this.rodada);
     return new Array(this.rodada);
   }
 
@@ -94,7 +97,6 @@ export class CampeonatoDetalhesComponent  implements OnInit, OnDestroy {
     }else if(this.rodada == 1){
       return "final"
     }else if(this.rodada <= 1){
-      console.log(this.rodada)
       return "winner"
     }
     return "team-item"
@@ -129,13 +131,13 @@ export class CampeonatoDetalhesComponent  implements OnInit, OnDestroy {
   ganhouNome(a: any, b: any, c: any){
     for (let i = 0; i < this.timesParticipantes.length; i++) {
       if (this.timesParticipantes[i].nomeTime == this.myMap.get(a + ""+ b + "" + ""+ c)) {
-        this.ganhou(this.timesParticipantes[i].idTime);
+        this.ganhou(this.timesParticipantes[i].timeCapitao);
       }
     }
   }
 
   ganhou(idTime: any){
-    this.campeonatoService.atualizarPosicao(idTime).subscribe(
+    this.timeService.atualizarPosicao(this.id, idTime).subscribe(
       sucess => console.log('sucesso'),
       error => console.log('error'),
       () => console.log('request completo')
@@ -163,13 +165,20 @@ export class CampeonatoDetalhesComponent  implements OnInit, OnDestroy {
   }
 
   formataData(dataFormata: any){
-
     let data: String[] = dataFormata.split('-');
 
     dataFormata = data[2] + "/" + data[1] + "/" + data[0];
 
     return dataFormata;
+  }
 
+  premiacao(premiacao: any){
+    premiacao = premiacao + '';
+    return  premiacao.replace(/^(\d{1})?(\d{3})?(\d{3})?(\d{2})/, 'R$ $1.$2.$3,$4');;
+  }
+
+  cadastroTime(){
+    this.router.navigate([`/time/${this.id}/cadastro`]);
   }
 
 }

@@ -11,14 +11,14 @@ import br.com.projetoxp.model.TimesCampeonato;
 @Service
 public class TimeCampeonatoService {
 	
-	public TimesCampeonato create(Campeonato campeonato, Time time) {
-		TimesCampeonato timesCampeonato = new TimesCampeonato(campeonato.getId(), time.getId(), time.getNome(), time.getNome() + "-" + campeonato.getTime(), campeonato.getTimesInscritos());
+	public TimesCampeonato create(Campeonato campeonato, Time time, int posicao) {
+		TimesCampeonato timesCampeonato = new TimesCampeonato(campeonato.getId(), time.getTimeCapitao(), time.getNome(), time.getCapitao(), posicao);
 		return timesCampeonato;
 	}
 
-	public void atualizarPosicao(List<TimesCampeonato> timesInscritos, Campeonato campeonato) {
-		for (TimesCampeonato timesCampeonato : timesInscritos) {
-			timesCampeonato.setPosicao(campeonato.getTimesInscritos());
+	public void atualizarPosicao(List<TimesCampeonato> timesParticipantes, Campeonato campeonato) {
+		for (TimesCampeonato timesCampeonato : timesParticipantes) {
+			timesCampeonato.setPosicao(timesCampeonato.getPosicao() + 1);
 		}
 	}
 

@@ -8,7 +8,6 @@ export class Campeonato {
   adm!: string;
   descricao!: string;
   regra!: string;
-  timesInscritos!: number;
   file!: string;
 }
 

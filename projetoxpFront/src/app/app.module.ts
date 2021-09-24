@@ -10,6 +10,7 @@ import { TimeFormComponent } from './time/time-form/time-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UsuarioModule } from './usuario/usuario.module';
 import { TimeModule } from './time/time.module';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { TimeModule } from './time/time.module';
     CampeonatoModule,
     UsuarioModule,
     TimeModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

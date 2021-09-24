@@ -1,3 +1,4 @@
+import { AuthGuard } from './usuario/guard/auth.guard';
 import { TimeRankingComponent } from './time/time-ranking/time-ranking.component';
 import { TimeFormComponent } from './time/time-form/time-form.component';
 import { CampeonatoFormComponent } from './campeonato/campeonato-form/campeonato-form.component';
@@ -14,7 +15,7 @@ import { UsuarioFormComponent } from './usuario/form/usuario-form.component';
 import { UsuarioFormResolver } from './usuario/guards/usuarioForm.resolver';
 
 const routes: Routes = [
-  { path: 'time/:id/cadastro', component: TimeFormComponent },
+  { path: 'time/:id/cadastro', component: TimeFormComponent,canActivate: [AuthGuard] },
   { path: 'ranking/time', component: TimeRankingComponent },
   // {
   //   path: 'campeonato',
@@ -23,6 +24,7 @@ const routes: Routes = [
   {
     path: 'campeonato/editar/:id', component: CampeonatoFormComponent,
     resolve: { form: CampeonatoFormResolver },
+    canActivate: [AuthGuard]
   },
   //{ path: '**', component: CampeonatoFormComponent },
   {
@@ -31,9 +33,11 @@ const routes: Routes = [
   {
     path: 'usuario/editar/:id', component: UsuarioFormComponent,
     resolve: { form: UsuarioFormResolver },
+    canActivate: [AuthGuard]
   },
   {
     path: 'campeonato/cadastro', component: CampeonatoFormComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'campeonato', component: CampeonatoComponent,
@@ -49,7 +53,9 @@ const routes: Routes = [
   //   loadChildren: () => import('./cadastro-usuario/usuario.module').then(m => m.UsuarioModule),
   // },
   { path: 'login', component: LoginComponent },
-  { path: 'logout', component: LogoutComponent },
+  { path: 'logout', component: LogoutComponent,
+    canActivate: [AuthGuard]
+  },
 ];
 
 @NgModule({

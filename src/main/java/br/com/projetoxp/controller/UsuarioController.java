@@ -1,5 +1,6 @@
 package br.com.projetoxp.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -44,11 +45,6 @@ public class UsuarioController {
 	@Transactional
 	public void atualizar(@PathVariable Long id, @RequestBody Usuario usuario){
 		usuario.atualizar(id, usuarioRepository);
-	}
-	
-	@PostMapping("/upload")
-	public void uploadLocal(@RequestParam("file")MultipartFile multipartFile) {
-		fileUploadService.uploadToLocal(multipartFile);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, path = "/login/{email}/{senha}")

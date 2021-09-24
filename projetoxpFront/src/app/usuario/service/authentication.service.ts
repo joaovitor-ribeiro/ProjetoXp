@@ -14,9 +14,9 @@ export class AuthenticationService {
 
   constructor(private http: HttpClient) {}
 
-authenticate(email: string, senha: string) {
-  this.http.get(this.XP+'/login/' + email + '/' + senha).subscribe(
-    result => this.isLogin = this.getResult(result,email)
+authenticate(nick: string, senha: string) {
+  this.http.get(this.XP+'/login/' + nick + '/' + senha).subscribe(
+    result => this.isLogin = this.getResult(result,nick)
   );
   return this.isLogin;
 }
@@ -31,9 +31,9 @@ logOut() {
   sessionStorage.removeItem('username')
 }
 
-getResult(result: any, email: string){
+getResult(result: any, nick: string){
   if (result) {
-    sessionStorage.setItem('username', email)
+    sessionStorage.setItem('username', nick)
     return true;
   } else {
     return false;

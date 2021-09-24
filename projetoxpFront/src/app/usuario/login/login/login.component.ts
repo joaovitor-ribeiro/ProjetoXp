@@ -29,9 +29,11 @@ export class LoginComponent extends BaseFormComponent implements OnInit {
   }
 
   submit() {
+    this.email = this.formulario.get('email')?.value;
+    this.senha = this.formulario.get('senha')?.value;
     if (this.loginservice.authenticate(this.email, this.senha)
     ) {
-      this.router.navigate([''])
+      this.router.navigate(['campeonato'])
       this.invalidLogin = false
     } else
       this.invalidLogin = true

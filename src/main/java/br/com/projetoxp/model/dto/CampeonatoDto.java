@@ -65,5 +65,5 @@ public class CampeonatoDto {
 		Campeonato campeonato = new Campeonato(nome, dataInicio, dataTermino, time, premiacao, adm, descricao, regra, file);
 		return campeonato;
 	}
-
+	
 }

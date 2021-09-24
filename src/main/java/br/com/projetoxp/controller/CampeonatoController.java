@@ -1,7 +1,6 @@
 package br.com.projetoxp.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -15,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.projetoxp.model.Campeonato;
 import br.com.projetoxp.model.dto.CampeonatoDto;
-import br.com.projetoxp.repository.CampeoantoRepository;
+import br.com.projetoxp.service.CampeonatoService;
 
 @RestController
 @RequestMapping("campeonato")
@@ -23,33 +22,27 @@ import br.com.projetoxp.repository.CampeoantoRepository;
 public class CampeonatoController {
 	
 	@Autowired
-	private CampeoantoRepository campeonatoRepository;
+	private CampeonatoService campeonatoService;
 	
 	@RequestMapping(method = RequestMethod.POST, path = "cadastro")
 	public void cadastroCampeonato(@RequestBody CampeonatoDto campeonatoDto) {
-		Campeonato campeonato = campeonatoDto.converteCampeonato();
-		campeonatoRepository.save(campeonato);
+		campeonatoService.cadastrarCampeonato(campeonatoDto);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, path = "listar")
-	public List<Campeonato> listarCampeonato() {
-		return campeonatoRepository.findAll();
+	public List<Campeonato> listarCampeonatos() {
+		return campeonatoService.listarCampeonatos();
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, path = "/editar/{id}")
 	public CampeonatoDto getCampeonatoById(@PathVariable Long id) {
-		Optional<Campeonato> optionalCampeonato = campeonatoRepository.findById(id);
-		if(optionalCampeonato.isPresent()) {
-			Campeonato campeonato = optionalCampeonato.get();
-			return campeonato.converteCampeonatoDto();
-		}
-		return null;
+		return campeonatoService.getCampeonatoById(id);
 	}
 	
 	@RequestMapping(method = RequestMethod.PUT, path = "/atualizar/{id}")
 	@Transactional
 	public void atualizar(@PathVariable Long id, @RequestBody Campeonato campeonato){
-		campeonato.atualizar(id, campeonatoRepository);
+		campeonatoService.atualizar(id, campeonato);
 	}
 	
 }

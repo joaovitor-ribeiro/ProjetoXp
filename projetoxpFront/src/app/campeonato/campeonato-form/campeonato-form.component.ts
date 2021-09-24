@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription, Observable, of } from 'rxjs';
 import { BaseFormComponent } from '../../shared/base-form/base-form.component';
@@ -75,6 +75,9 @@ export class CampeonatoFormComponent extends BaseFormComponent implements OnInit
   onChange(event: any) {
     this.nameFile = event.srcElement.files[0].name;
     this.files = event.srcElement.files[0];
+    this.preenchendoCampeonatoDto();
+    console.log(this.campeonatoDto);
+    console.log(this.formulario.controls['dataInicio']?.value);
   }
 
   onUpload() {

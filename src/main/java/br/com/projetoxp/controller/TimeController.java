@@ -1,7 +1,6 @@
 package br.com.projetoxp.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -13,13 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.projetoxp.model.Campeonato;
 import br.com.projetoxp.model.Time;
 import br.com.projetoxp.model.TimesCampeonato;
-import br.com.projetoxp.repository.CampeoantoRepository;
-import br.com.projetoxp.repository.TimeRepository;
-import br.com.projetoxp.repository.TimesCampeonatoRepository;
-import br.com.projetoxp.service.TimeCampeonatoService;
 import br.com.projetoxp.service.TimeService;
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -28,52 +22,27 @@ import br.com.projetoxp.service.TimeService;
 public class TimeController {
 	
 	@Autowired
-	private CampeoantoRepository campeonatoRepository;
-	@Autowired
-	private TimeRepository timeRepository;
-	@Autowired
-	private TimesCampeonatoRepository timesCampeonatoRepository;
-	@Autowired
-	private TimeCampeonatoService timesCampeonatoService;
-	@Autowired
-	private TimeService timeSerivice;
+	private TimeService timeService;
 	
 	@RequestMapping(method = RequestMethod.POST, path = "cadastro/{id}")
-	public void cadastroTimeNoCampeonato(@PathVariable Long id, @RequestBody Time time) {
-		Optional<Campeonato> optionalCampeonato = campeonatoRepository.findById(id);
-		if(optionalCampeonato.isPresent()) {
-			Campeonato campeonato = optionalCampeonato.get();
-			
-			List<TimesCampeonato> timesParticipantes = timesCampeonatoRepository.findByIdCampeonato(id);
-			TimesCampeonato timesCampeonato = timesCampeonatoService.create(campeonato, time, timesParticipantes.size() + 1);
-			
-			timesCampeonatoService.atualizarPosicao(timesParticipantes, campeonato);
-			
-			timesCampeonatoRepository.save(timesCampeonato);
-		}
-		time.setPontuacao(0);
-		timeRepository.save(time);
+	public void cadastrarTimeNoCampeonato(@PathVariable Long id, @RequestBody Time time) {
+		timeService.cadastrarNovoTimeNoCampeonato(id, time);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, path = "participantes/{id}")
 	public List<TimesCampeonato> listarTimesParticipantes(@PathVariable Long id) {
-		return timesCampeonatoRepository.findByIdCampeonato(id);
+		return timeService.listarTimesParticipantes(id);
 	}
 	
 	@RequestMapping(method = RequestMethod.PUT, path = "/atualizar/posicao/{id}")
 	@Transactional
-	public void atualizarPosicao(@PathVariable Long id, @RequestBody String timeCapitao){
-		TimesCampeonato timescampeonato;
-		List<Time> times;
-		timescampeonato = timesCampeonatoRepository.findByTimeCapitao(timeCapitao);
-		times = timeRepository.findByTimeCapitao(timeCapitao);
-		timeSerivice.atualizarPontuacao(times, id);
-		timescampeonato.setPosicao(timescampeonato.getPosicao() / 2);
+	public void atualizarPosicaoEPontos(@PathVariable Long id, @RequestBody String timeCapitao){
+		timeService.atualizarPosicaoEPontosDoTime(id, timeCapitao);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, path = "listar")
-	public List<Time> listarTodosTimes() {
-		return timeRepository.findAll();
+	public List<Time> listarTimes() {
+		return timeService.listarTimes();
 	}
 
 }

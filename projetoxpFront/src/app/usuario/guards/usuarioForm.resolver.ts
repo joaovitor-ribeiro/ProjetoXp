@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 import { UsuarioDto } from '../model/usuarioDto.model';
-import { UsuarioFormService } from '../service/cadastro-usuario.service';
+import { UsuarioFormService } from '../service/usuario.service';
 
 
 @Injectable()

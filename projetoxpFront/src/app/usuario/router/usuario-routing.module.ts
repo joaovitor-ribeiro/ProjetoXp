@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { UsuarioFormComponent } from "../usuario-form.component";
+import { UsuarioFormComponent } from "../form/usuario-form.component";
 import { UsuarioFormResolver } from "../guards/usuarioForm.resolver";
 
 const usuarioRoutes = [
@@ -14,11 +14,10 @@ const usuarioRoutes = [
       ],
     },
   ];
-  
+
   @NgModule({
     imports: [RouterModule.forChild(usuarioRoutes)],
     exports: [RouterModule]
   })
-  
+
   export class UsuarioRoutingModule { }
-  

@@ -1,5 +1,6 @@
 package br.com.projetoxp.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -44,6 +45,20 @@ public class UsuarioController {
 	@Transactional
 	public void atualizar(@PathVariable Long id, @RequestBody Usuario usuario){
 		usuario.atualizar(id, usuarioRepository);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, path = "/login/{email}/{senha}")
+	public boolean login(@PathVariable String email, @PathVariable String senha) {
+		List<Usuario> usuario = usuarioRepository.findByEmail(email);
+		if(!usuario.isEmpty()) {
+			System.out.println(usuario.get(0).getSenha());
+			System.out.println(senha);
+			if(usuario.get(0).getSenha().equals(senha)) {
+				return true;
+			}
+			return false;
+		}
+		return false; 
 	}
 	
 }

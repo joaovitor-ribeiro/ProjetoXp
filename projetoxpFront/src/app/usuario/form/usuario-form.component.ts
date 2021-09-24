@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { UploadFileService } from '../campeonato/service/upload-file.service';
-import { BaseFormComponent } from '../shared/base-form/base-form.component';
-import { FormValidations } from '../shared/form-validations';
-import { UsuarioDto } from './model/usuarioDto.model';
-import { UsuarioFormService } from './service/cadastro-usuario.service';
+import { UploadFileService } from 'src/app/campeonato/service/upload-file.service';
+import { BaseFormComponent } from 'src/app/shared/base-form/base-form.component';
+import { FormValidations } from 'src/app/shared/form-validations';
+import { UsuarioDto } from '../model/usuarioDto.model';
+import { UsuarioFormService } from '../service/usuario.service';
 
 @Component({
   selector: 'app-cadastro-usuario',

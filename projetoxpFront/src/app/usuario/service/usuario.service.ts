@@ -22,7 +22,7 @@ export class UsuarioFormService {
     return this.http.put(this.XP+'/atualizar/' + id, usuario).pipe(take(1));
   }
 
-  public getUsuarioId(id: number): Observable<UsuarioDto> {
-    return this.http.get<UsuarioDto>(this.XP+'/editar/' + id);
+  public getUsuarioNick(nick: string): Observable<UsuarioDto> {
+    return this.http.get<UsuarioDto>(this.XP+'/editar/' + nick);
   }
 }

@@ -31,7 +31,7 @@ const routes: Routes = [
     path: 'usuario/cadastro', component: UsuarioFormComponent,
   },
   {
-    path: 'usuario/editar/:id', component: UsuarioFormComponent,
+    path: 'usuario/editar/:nick', component: UsuarioFormComponent,
     resolve: { form: UsuarioFormResolver },
     canActivate: [AuthGuard]
   },

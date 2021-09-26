@@ -8,7 +8,7 @@
       <li><a *ngIf="!loginService.isUserLoggedIn()" routerLink="/login">Login</a></li>
       <li><a *ngIf="loginService.isUserLoggedIn()" [matMenuTriggerFor]="menu">Profile</a></li>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item routerLink="/usuario/editar/17">Editar Usuario</button>
+          <button mat-menu-item routerLink="/usuario/editar/{{loginService.sessionStorage.getItem('username')}">Editar Usuario</button>
           <button mat-menu-item routerLink="/logout">Logout</button>
         </mat-menu>
     </ul>

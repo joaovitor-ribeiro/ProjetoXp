@@ -31,9 +31,9 @@ public class UsuarioController {
 		usuarioRepository.save(usuario);
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, path = "/editar/{id}")
-	public UsuarioDto getUsuarioById(@PathVariable Long id) {
-		Optional<Usuario> optionalUsuario = usuarioRepository.findById(id);
+	@RequestMapping(method = RequestMethod.GET, path = "/editar/{nick}")
+	public UsuarioDto getUsuarioById(@PathVariable String nick) {
+		Optional<Usuario> optionalUsuario = usuarioRepository.findByNick(nick);
 		if(optionalUsuario.isPresent()) {
 			Usuario usuario = optionalUsuario.get();
 			return usuario.converteUsuarioDto();
@@ -47,13 +47,11 @@ public class UsuarioController {
 		usuario.atualizar(id, usuarioRepository);
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, path = "/login/{email}/{senha}")
-	public boolean login(@PathVariable String email, @PathVariable String senha) {
-		List<Usuario> usuario = usuarioRepository.findByEmail(email);
+	@RequestMapping(method = RequestMethod.GET, path = "/login/{nick}/{senha}")
+	public boolean login(@PathVariable String nick, @PathVariable String senha) {
+		Optional<Usuario> usuario = usuarioRepository.findByNick(nick);
 		if(!usuario.isEmpty()) {
-			System.out.println(usuario.get(0).getSenha());
-			System.out.println(senha);
-			if(usuario.get(0).getSenha().equals(senha)) {
+			if(usuario.get().getSenha().equals(senha)) {
 				return true;
 			}
 			return false;

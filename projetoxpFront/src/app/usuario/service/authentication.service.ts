@@ -39,4 +39,11 @@ getResult(result: any, nick: string){
     return false;
   }
 }
+
+getSessionItem(){
+  let user = sessionStorage.getItem('username')
+  console.log(sessionStorage.getItem('username'))
+  return  sessionStorage.getItem('username');
+}
+
 }

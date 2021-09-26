@@ -11,7 +11,7 @@ import { AuthenticationService } from '../../service/authentication.service';
 })
 export class LoginComponent extends BaseFormComponent implements OnInit {
 
-  email: string = ''
+  nick: string = ''
   senha: string = ''
   invalidLogin = false
   formulario!: FormGroup;
@@ -23,15 +23,15 @@ export class LoginComponent extends BaseFormComponent implements OnInit {
 
   ngOnInit() {
     this.formulario = this.formBuilder.group({
-      'email': [null, [Validators.required,Validators.email]],
+      'nick': [null, [Validators.required, Validators.minLength(3), Validators.maxLength(35)]],
       'senha': [null, [Validators.required, Validators.minLength(6)]],
     });
   }
 
   submit() {
-    this.email = this.formulario.get('email')?.value;
+    this.nick = this.formulario.get('nick')?.value;
     this.senha = this.formulario.get('senha')?.value;
-    if (this.loginservice.authenticate(this.email, this.senha)
+    if (this.loginservice.authenticate(this.nick, this.senha)
     ) {
       this.router.navigate(['campeonato'])
       this.invalidLogin = false

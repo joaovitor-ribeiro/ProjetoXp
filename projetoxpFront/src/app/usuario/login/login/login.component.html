@@ -3,15 +3,20 @@
 <div class="container">
 
     <div class="row">
-      <app-input-field class="input-field col s12" formControlName="email"
-      id="email" label="Email" [control]="formulario.get('email')"
+      <app-input-field class="input-field col s12" formControlName="nick"
+      id="nick" label="Nick" [control]="formulario.get('nick')"
       ></app-input-field>
     </div>
 
   <div class="row">
     <app-input-field class="input-field col s12" formControlName="senha" type="password"
     id="senha" label="Senha" [control]="formulario.get('senha')"
-  ></app-input-field>
+    ></app-input-field>
+  </div>
+
+  <div class="row">
+    <a routerLink="/usuario/cadastro">Cadastrar novo usuario</a>
+  </div>
 
   <button type="submit" class="btn btn-success">
     Login

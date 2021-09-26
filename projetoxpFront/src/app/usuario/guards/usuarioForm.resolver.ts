@@ -11,7 +11,7 @@ export class UsuarioFormResolver implements Resolve<UsuarioDto> {
     constructor(private campeonatoFormService: UsuarioFormService){}
 
     resolve(route: ActivatedRouteSnapshot): Observable<UsuarioDto>{
-        let id = route.params['id'];
-        return this.campeonatoFormService.getUsuarioId(id);
+        let nick = route.params['nick'];
+        return this.campeonatoFormService.getUsuarioNick(nick);
     }
 }

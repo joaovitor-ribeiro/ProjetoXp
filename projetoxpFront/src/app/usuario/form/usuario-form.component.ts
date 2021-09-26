@@ -57,6 +57,7 @@ export class UsuarioFormComponent extends BaseFormComponent implements OnInit {
   }
 
   populaDadosForm(usuario: UsuarioDto) {
+    console.log(usuario)
     this.formulario.patchValue({
       nome: usuario.nome,
       nick: usuario.nick,

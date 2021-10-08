@@ -43,7 +43,7 @@ export class CampeonatoDetalhesComponent  implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.usuario = this.loginService.getSessionItem();
+    this.usuario = this.loginService.getSessionNick();
     this.inscricao = this.route.data.subscribe(
       (campeonato) => {
         this.campeonatoDto = (campeonato.detalhes);
@@ -142,9 +142,8 @@ export class CampeonatoDetalhesComponent  implements OnInit, OnDestroy {
   }
 
   ganhou(idTime: any){
-    console.log(idTime);
     this.timeService.atualizarPosicao(this.id, idTime).subscribe(
-      sucess => console.log('sucesso'),
+      sucess => window.location.reload(),
       error => console.log('error'),
       () => console.log('request completo')
     );

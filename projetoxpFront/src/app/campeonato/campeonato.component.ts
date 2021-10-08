@@ -29,7 +29,7 @@ export class CampeonatoComponent implements OnInit {
       (list) => {
         this.campeonato$ = of(list.campeonato);
         this.id = list.campeonato.id;
-        this.usuario = this.login.getSessionItem();
+        this.usuario = this.login.getSessionNick();
       }
     );
   }

@@ -39,7 +39,7 @@ export class TimeFormComponent extends BaseFormComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.usuario = this.login.getSessionItem();
+    this.usuario = this.login.getSessionNick();
 
     this.route.params.subscribe(params =>{
       this.id = params['id'];

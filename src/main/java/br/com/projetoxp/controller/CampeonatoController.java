@@ -34,7 +34,7 @@ public class CampeonatoController {
 		return campeonatoService.listarCampeonatos();
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, path = "/editar/{id}")
+	@RequestMapping(method = RequestMethod.GET, path = "/retorna/{id}")
 	public CampeonatoDto getCampeonatoById(@PathVariable Long id) {
 		return campeonatoService.getCampeonatoById(id);
 	}

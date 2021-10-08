@@ -41,29 +41,31 @@ export class CampeonatoFormComponent extends BaseFormComponent implements OnInit
     }
 
     ngOnInit(): void {
+      this.formulario = this.formBuilder.group({
+        'nome': [null, [Validators.required, Validators.minLength(3), Validators.maxLength(35)]],
+        'dataInicio': [null, [Validators.required]],
+        'dataTermino': [null, [Validators.required]],
+        'time': [this.selectOptions[0], [Validators.required]],
+        'premiacao': [null, [Validators.required]],
+        'adm': [null, [Validators.required]],
+        'descricao': [null, [Validators.required]],
+        'regra': [null, [Validators.required]],
+        'file': [null, []],
+      });
     this.inscricao = this.route.data.subscribe(
       (campeonato) => {
+        console.log(campeonato);
         if(campeonato.form != undefined){
           this.campeonatoDto = (campeonato.form);
           this.populaDadosForm(campeonato.form);
-          this.editar = true;
           this.route.params.subscribe(params =>{
+            this.editar = true;
             this.id = params['id'];
           })
         }
       }
     );
-    this.formulario = this.formBuilder.group({
-      'nome': [null, [Validators.required, Validators.minLength(3), Validators.maxLength(35)]],
-      'dataInicio': [null, [Validators.required]],
-      'dataTermino': [null, [Validators.required]],
-      'time': [this.selectOptions[0], [Validators.required]],
-      'premiacao': [null, [Validators.required]],
-      'adm': [null, [Validators.required]],
-      'descricao': [null, [Validators.required]],
-      'regra': [null, [Validators.required]],
-      'file': [null, []],
-    });
+
   }
 
   populaDadosForm(campeonato: CampeonatoDto) {
@@ -84,7 +86,6 @@ export class CampeonatoFormComponent extends BaseFormComponent implements OnInit
   onChange(event: any) {
     this.nameFile = event.srcElement.files[0].name;
     this.files = event.srcElement.files[0];
-    console.log(this.formulario.get('time')?.value);
   }
 
   onUpload() {

@@ -18,10 +18,15 @@ public class UsuarioService {
 	@Autowired
 	private PasswordEncoder encoder;
 	
-	public void cadastrarUsuario(UsuarioDto usuarioDto) {
-		Usuario usuario = usuarioDto.converteUsuario();
-		usuario.setSenha(encoder.encode(usuario.getSenha()));
-		usuarioRepository.save(usuario);
+	public boolean cadastrarUsuario(UsuarioDto usuarioDto) {
+		Optional<Usuario> optionalUsuario = usuarioRepository.findByNick(usuarioDto.getNick());
+		if(optionalUsuario.isEmpty()) {
+			Usuario usuario = usuarioDto.converteUsuario();
+			usuario.setSenha(encoder.encode(usuario.getSenha()));
+			usuarioRepository.save(usuario);
+			return true;
+		}
+		return false;
 	}
 	
 	public UsuarioDto getUsuarioById(String nick) {

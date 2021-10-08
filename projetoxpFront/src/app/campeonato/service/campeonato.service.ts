@@ -21,7 +21,7 @@ export class CampeonatoService {
   }
 
   public getCampeonatoId(id: number): Observable<CampeonatoDto> {
-    return this.http.get<CampeonatoDto>(this.XP+'/editar/' + id);
+    return this.http.get<CampeonatoDto>(this.XP+'/retorna/' + id);
   }
 
 }

@@ -2,22 +2,24 @@
 <ul id="slide-out" class="sidenav sidenav-fixed">
   <li><div class="user-view">
     <div class="background">
-      <img style="width: 100px; height: 100px;" src="../assets/time/FateZero 4.jpg">
+      <img style="width: 100%; height: 100%;" src="../assets/logo.png">
     </div>
-    <a href="#user"><img class="circle" src="../assets/usuario/{{loginService.getSessionFile()}}"></a>
-    <a href="#name"><span class="white-text name">John Doe</span></a>
+    <a *ngIf="loginService.isUserLoggedIn()" href="#user"><img class="circle" src="../assets/usuario/{{loginService.getSessionFile()}}"></a>
+    <a *ngIf="loginService.isUserLoggedIn()" href="#name"><span class="white-text name">John Doe</span></a>
+    <a *ngIf="!loginService.isUserLoggedIn()" href="#user"><img class="circle" src="../assets/usuario/usuarioDefault.png"></a>
+    <a *ngIf="!loginService.isUserLoggedIn()" href="#name"><span class="white-text name">Usuário</span></a>
   </div></li>
   <li><a *ngIf="!loginService.isUserLoggedIn()" routerLink="/login">Entrar</a></li>
   <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/usuario/editar/{{loginService.getSessionNick()}}">Editar Usuário</a></li>
   <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/logout">Sair</a></li>
   <li><div class="divider"></div></li>
   <li><a class="subheader">Campeonato</a></li>
-  <li><a *ngIf="  loginService.isUserLoggedIn()" routerLink="/campeonato">Lista de campeonatos</a></li>
+  <li><a routerLink="/campeonato">Lista de campeonatos</a></li>
   <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/campeonato/cadastro">Cadastro de campeonato</a></li>
-  <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/ranking/time">Lista de classificação</a></li>
+  <li><a routerLink="/ranking/time">Lista de classificação</a></li>
 </ul>
 <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 
-<div class="container" style="margin-top: 30px;" >
+<div class="container" style="margin-top: -15px; margin-left: 400px;" >
   <router-outlet></router-outlet>
 </div>

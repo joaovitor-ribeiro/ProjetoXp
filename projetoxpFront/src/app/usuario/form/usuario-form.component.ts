@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { UploadFileService } from 'src/app/campeonato/service/upload-file.service';
 import { BaseFormComponent } from 'src/app/shared/base-form/base-form.component';
@@ -26,7 +26,8 @@ export class UsuarioFormComponent extends BaseFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private usuarioFormService: UsuarioFormService,
     private service: UploadFileService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router,
   ) {
     super();
   }
@@ -102,9 +103,14 @@ export class UsuarioFormComponent extends BaseFormComponent implements OnInit {
         this.onUpload();
       }
       this.usuarioFormService.cadastroUsuario(this.usuarioDto).subscribe(
-        sucess => this.formulario.reset(),
-        error => console.log('error'),
-        () => console.log('request completo')
+       result => {
+         if(!result){
+          alert('Usuario cadastrado com sucesso');
+          this.router.navigate(['login']);
+         }else{
+          alert('Usuario já cadastrado');
+         }
+       }
       );
     }
   }

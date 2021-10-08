@@ -22,4 +22,8 @@ export class CampeonatoFormService {
     return this.http.put(this.XP+'/atualizar/' + id, campeonato).pipe(take(1));
   }
 
+  public retorncampeonato(id: number): Observable<CampeonatoDto> {
+    return this.http.get<CampeonatoDto>(this.XP+'/retorna/' + id);
+  }
+
 }

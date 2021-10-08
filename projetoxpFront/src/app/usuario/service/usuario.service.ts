@@ -14,11 +14,11 @@ export class UsuarioFormService {
 
   constructor(private http: HttpClient) {}
 
-  public cadastroUsuario(usuario: UsuarioDto) {
-    return this.http.post(this.XP+'/cadastro', usuario).pipe(take(1));
+  public cadastroUsuario(usuario: UsuarioDto): Observable<boolean> {
+    return this.http.post<boolean>(this.XP+'/cadastro', usuario);
   }
 
-  public atualizarUsuario(nick: string, usuario: UsuarioDto) {
+  public atualizarUsuario(nick: string, usuario: UsuarioDto){
     return this.http.put(this.XP+'/atualizar/' + nick, usuario).pipe(take(1));
   }
 

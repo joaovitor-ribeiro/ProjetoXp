@@ -3,6 +3,13 @@
   height: 12%;
 }
 
+.imagem{
+  background-image: url(../assets/campeonato/campeonatoDefault.jpg);
+  background-repeat: no-repeat;
+  width: 5000vh;
+  height: 500vh;
+}
+
 header, main, footer {
   padding-left: 300px;
 }

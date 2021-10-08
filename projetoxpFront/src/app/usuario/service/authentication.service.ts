@@ -1,4 +1,3 @@
-import { Router } from '@angular/router';
 import { UsuarioDto } from './../model/usuarioDto.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -13,25 +12,18 @@ export class AuthenticationService {
   private readonly XP = `${environment.XP}usuario`
   private isLogin = false;
 
-  constructor(
-    private http: HttpClient,
-    private router: Router,
-  ) {}
+  constructor(private http: HttpClient) { }
 
   authenticate(nick: string, senha: string) {
-    this.http.get(this.XP+'/login/' + nick + '/' + senha).subscribe(
-      result =>{
-        this.isLogin = this.getResult(result,nick);
-        if(this.isLogin){
-          this.router.navigate(['campeonato']);
-        }
-      }
+    this.http.get(this.XP + '/login/' + nick + '/' + senha).subscribe(
+      result => this.isLogin = this.getResult(result, nick)
     );
     return this.isLogin;
   }
 
   isUserLoggedIn() {
     let user = sessionStorage.getItem('username')
+    console.log(!(user === null))
     return !(user === null)
   }
 
@@ -39,16 +31,17 @@ export class AuthenticationService {
     sessionStorage.removeItem('username')
   }
 
-  getResult(result: any, nick: string){
+  getResult(result: any, nick: string) {
     if (result) {
-      sessionStorage.setItem('username', nick);
+      sessionStorage.setItem('username', nick)
       return true;
     } else {
       return false;
     }
   }
 
-  getSessionItem(){
+  getSessionItem() {
+    let user = sessionStorage.getItem('username')
     return sessionStorage.getItem('username');
   }
 

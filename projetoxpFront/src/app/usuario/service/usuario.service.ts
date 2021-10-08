@@ -18,8 +18,8 @@ export class UsuarioFormService {
     return this.http.post(this.XP+'/cadastro', usuario).pipe(take(1));
   }
 
-  public atualizarUsuario(id: number, usuario: UsuarioDto) {
-    return this.http.put(this.XP+'/atualizar/' + id, usuario).pipe(take(1));
+  public atualizarUsuario(nick: string, usuario: UsuarioDto) {
+    return this.http.put(this.XP+'/atualizar/' + nick, usuario).pipe(take(1));
   }
 
   public getUsuarioNick(nick: string): Observable<UsuarioDto> {

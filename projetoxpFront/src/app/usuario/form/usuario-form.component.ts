@@ -19,7 +19,7 @@ export class UsuarioFormComponent extends BaseFormComponent implements OnInit {
   files: File | undefined;
   nameFile: string = '';
   editar: boolean = false;
-  id!: number;
+  nick!: string;
   inscricao!: Subscription;
 
   constructor(
@@ -49,7 +49,7 @@ export class UsuarioFormComponent extends BaseFormComponent implements OnInit {
           this.populaDadosForm(usuario.form);
           this.editar = true;
           this.route.params.subscribe(params =>{
-            this.id = params['id'];
+            this.nick = params['nick'];
           })
         }
       }
@@ -92,7 +92,7 @@ export class UsuarioFormComponent extends BaseFormComponent implements OnInit {
       if(this.nameFile !== this.formulario.get('file')?.value){
         this.onUpload();
       }
-      this.usuarioFormService.atualizarUsuario(this.id,this.usuarioDto).subscribe(
+      this.usuarioFormService.atualizarUsuario(this.nick,this.usuarioDto).subscribe(
         sucess => (this.formulario.reset(),this.editar = false),
         error => console.log('error'),
         () => console.log('request completo')

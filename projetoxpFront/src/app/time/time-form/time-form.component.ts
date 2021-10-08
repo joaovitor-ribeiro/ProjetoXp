@@ -1,10 +1,13 @@
+import { TimeDto } from './../model/time.model';
 import { Component, OnInit } from '@angular/core';
 import { BaseFormComponent } from 'src/app/shared/base-form/base-form.component';
 import { FormBuilder, Validators } from '@angular/forms';
 import { UploadFileService } from 'src/app/campeonato/service/upload-file.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TimeService } from '../service/time.service';
 import { Time } from '../model/time.model';
+import { AuthenticationService } from './../../usuario/service/authentication.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-time-form',
@@ -17,21 +20,43 @@ export class TimeFormComponent extends BaseFormComponent implements OnInit {
   files: File | undefined;
   nameFile: string = '';
   id!: number;
+  idTime!: string;
+  usuario!: any;
+  time$!: Observable<Time[]>
+  edit = false;
+  semTime = false;
 
   constructor(
     private timeService: TimeService,
     private formBuilder: FormBuilder,
     private service: UploadFileService,
     private route: ActivatedRoute,
+    private router: Router,
+    private login: AuthenticationService
   ) {
     super();
   }
 
   ngOnInit(): void {
 
+    this.usuario = this.login.getSessionItem();
+
     this.route.params.subscribe(params =>{
       this.id = params['id'];
+      if(params['timeCapitao']){
+        this.edit = true;
+        this.idTime = params['timeCapitao'];
+      }
+      this.timeService.getTime(params['id'], params['timeCapitao']).subscribe(result => {
+        if(result){
+          this.preencheFormulario(result);
+        }else{
+          this.semTime = true;
+        }
+      })
     });
+
+    this.time$ = this.timeService.listarTimeByUsuario(this.usuario);
 
     this.formulario = this.formBuilder.group({
       'nome': [null, [Validators.required, Validators.minLength(3), Validators.maxLength(35)]],
@@ -44,16 +69,45 @@ export class TimeFormComponent extends BaseFormComponent implements OnInit {
     });
   }
 
+  preencheFormulario(time: any){
+    this.formulario.patchValue({
+      nome: time.nome,
+      capitao: time.capitao,
+      jogador2: time.jogador2,
+      jogador3: time.jogador3,
+      jogador4: time.jogador4,
+      jogador5: time.jogador5,
+      file: time.file,
+    });
+  }
+
   submit() {
     this.preenchendoTime();
-    if(this.nameFile != ''){
-      this.onUpload();
+    if(this.edit){
+      if(this.nameFile != this.formulario.get('file')?.value){
+        this.onUpload();
+      }
+      this.timeService.editarTime(this.id, this.idTime, this.time).subscribe(
+        sucess =>  {
+          alert('Time editado com sucesso'),
+          this.router.navigate(['campeonato/detalhes/', this.id])
+        },
+        error => console.log('error'),
+        () => console.log('request completo')
+      );
+    }else{
+      if(this.nameFile != ''){
+        this.onUpload();
+      }
+      this.timeService.cadastrarTime(this.id, this.time).subscribe(
+        sucess => {
+          alert('Time cadastrado com sucesso'),
+          this.router.navigate(['campeonato/detalhes/', this.id])
+        },
+        error => console.log('error'),
+        () => console.log('request completo')
+      );
     }
-    this.timeService.cadastrarTime(this.id, this.time).subscribe(
-      sucess => (this.formulario.reset()),
-      error => console.log('error'),
-      () => console.log('request completo')
-    );
   }
 
   onChange(event: any) {

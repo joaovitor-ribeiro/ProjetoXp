@@ -20,6 +20,8 @@
     "@angular/platform-browser": "~12.2.0",
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
+    "angular2-materialize": "^15.1.10",
+    "materialize-css": "^1.0.0",
     "ngx-currency-mask": "^4.3.2",
     "ngx-mask": "^12.0.0",
     "rxjs": "~6.6.0",

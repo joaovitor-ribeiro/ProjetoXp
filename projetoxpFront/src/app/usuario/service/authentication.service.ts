@@ -40,9 +40,9 @@ export class AuthenticationService {
     }
   }
 
-  getSessionItem() {
-    let user = sessionStorage.getItem('username')
-    return sessionStorage.getItem('username');
-  }
+getSessionItem(){
+  let user = sessionStorage.getItem('username')
+  return  sessionStorage.getItem('username');
+}
 
 }

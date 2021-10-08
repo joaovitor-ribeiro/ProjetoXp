@@ -20,4 +20,9 @@ public class ProjetoxpApplication {
 		return encoder;
 	}
 
+	@Bean
+    public PasswordEncoder getPassWordEncoder() {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        return encoder;
+    }
 }

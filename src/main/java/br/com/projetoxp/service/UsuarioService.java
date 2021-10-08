@@ -3,6 +3,7 @@ package br.com.projetoxp.service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import br.com.projetoxp.model.Usuario;
@@ -14,9 +15,12 @@ public class UsuarioService {
 
 	@Autowired
 	private UsuarioRepository usuarioRepository;
+	@Autowired
+	private PasswordEncoder encoder;
 	
 	public void cadastrarUsuario(UsuarioDto usuarioDto) {
 		Usuario usuario = usuarioDto.converteUsuario();
+		usuario.setSenha(encoder.encode(usuario.getSenha()));
 		usuarioRepository.save(usuario);
 	}
 	
@@ -36,7 +40,7 @@ public class UsuarioService {
 	public UsuarioDto login( String nick, String senha) {
 		Optional<Usuario> optionalUsuario = usuarioRepository.findByNick(nick);
 		if(!optionalUsuario.isEmpty()) {
-			if(optionalUsuario.get().getSenha().equals(senha)) {
+			if(encoder.matches(senha, optionalUsuario.get().getSenha())) {
 				Usuario usuario = optionalUsuario.get();
 				return usuario.converteUsuarioDto();
 			}

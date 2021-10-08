@@ -1,5 +1,7 @@
 package br.com.projetoxp.model;
 
+import java.util.Optional;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -76,8 +78,9 @@ public class Usuario {
 		return usuarioDto;
 	}
 	
-	public void atualizar(Long id, UsuarioRepository usuarioRepository) {
-		Usuario usuario = usuarioRepository.getById(id);
+	public void atualizar(String nick, UsuarioRepository usuarioRepository) {
+		Optional<Usuario> optionalUsuario = usuarioRepository.findByNick(nick);
+		Usuario usuario = optionalUsuario.get();
 		usuario.setNome(this.nome);
 		usuario.setNick(this.nick);
 		usuario.setEmail(this.email);

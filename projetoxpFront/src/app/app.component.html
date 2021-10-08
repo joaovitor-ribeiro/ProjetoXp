@@ -1,19 +1,22 @@
-<nav style="background-color: #a3cfec;">
-  <div class="nav-wrapper">
-    <a routerLinkActive="" class="brand-logo"><img class="logo" src="../assets/logo.png"></a>
-    <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a routerLink="/campeonato">Campeonato</a></li>
-      <li><a routerLink="/campeonato/cadastro">Cadastrar campeonato</a></li>
-      <li><a href="/ranking/time">Lista de classificação</a></li>
-      <li><a *ngIf="!loginService.isUserLoggedIn()" routerLink="/login">Login</a></li>
-      <li><a *ngIf="loginService.isUserLoggedIn()" [matMenuTriggerFor]="menu">Profile</a></li>
-        <mat-menu #menu="matMenu">
-          <button mat-menu-item routerLink="/usuario/editar/{{loginService.getSessionItem()}}">Editar Usuario</button>
-          <button mat-menu-item routerLink="/logout">Logout</button>
-        </mat-menu>
-    </ul>
-  </div>
-</nav>
+<nav> <!-- navbar content here  --> </nav>
+<ul id="slide-out" class="sidenav sidenav-fixed">
+  <li><div class="user-view">
+    <div class="background">
+      <img style="width: 100px; height: 100px;" src="../assets/time/FateZero 4.jpg">
+    </div>
+    <a href="#user"><img class="circle" src="../assets/usuario/{{loginService.getSessionFile()}}"></a>
+    <a href="#name"><span class="white-text name">John Doe</span></a>
+  </div></li>
+  <li><a *ngIf="!loginService.isUserLoggedIn()" routerLink="/login">Entrar</a></li>
+  <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/usuario/editar/{{loginService.getSessionNick()}}">Editar Usuário</a></li>
+  <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/logout">Sair</a></li>
+  <li><div class="divider"></div></li>
+  <li><a class="subheader">Campeonato</a></li>
+  <li><a *ngIf="  loginService.isUserLoggedIn()" routerLink="/campeonato">Lista de campeonatos</a></li>
+  <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/campeonato/cadastro">Cadastro de campeonato</a></li>
+  <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/ranking/time">Lista de classificação</a></li>
+</ul>
+<a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 
 <div class="container" style="margin-top: 30px;" >
   <router-outlet></router-outlet>

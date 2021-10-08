@@ -33,16 +33,22 @@ logOut() {
 
 getResult(result: any, nick: string){
   if (result) {
-    sessionStorage.setItem('username', nick)
+    sessionStorage.setItem('username', result.nick)
+    sessionStorage.setItem('file',result.file)
     return true;
   } else {
     return false;
   }
 }
 
-getSessionItem(){
+getSessionNick(){
   let user = sessionStorage.getItem('username')
-  return  sessionStorage.getItem('username');
+  return  user;
+}
+
+getSessionFile(){
+  let file = sessionStorage.getItem('file')
+  return  file;
 }
 
 }

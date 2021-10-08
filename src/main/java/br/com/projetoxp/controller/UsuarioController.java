@@ -1,11 +1,11 @@
 package br.com.projetoxp.controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -45,5 +45,4 @@ public class UsuarioController {
 	public UsuarioDto login(@PathVariable String nick, @PathVariable String senha) {
 		return usuarioService.login(nick, senha);
 	}
-	
 }

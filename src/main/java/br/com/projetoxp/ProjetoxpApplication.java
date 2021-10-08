@@ -13,6 +13,12 @@ public class ProjetoxpApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ProjetoxpApplication.class, args);
 	}
+	
+	@Bean
+	public PasswordEncoder getPassWordEncoder() {
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		return encoder;
+	}
 
 	@Bean
     public PasswordEncoder getPassWordEncoder() {

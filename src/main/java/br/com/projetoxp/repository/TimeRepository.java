@@ -10,4 +10,6 @@ import br.com.projetoxp.model.Time;
 @Repository
 public interface TimeRepository extends JpaRepository<Time, Long>{
 	List<Time> findByTimeCapitao(String timeCapitao);
+	List<Time> findByCapitao(String Capitao);
+	List<Time> findByIdCampeonato(Long id);
 }

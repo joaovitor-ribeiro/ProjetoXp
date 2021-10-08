@@ -29,6 +29,12 @@ public class TimeController {
 		timeService.cadastrarNovoTimeNoCampeonato(id, time);
 	}
 	
+	@RequestMapping(method = RequestMethod.PUT, path = "editar/{id}/{timeCapitao}")
+	@Transactional
+	public void editarTime(@PathVariable Long id, @PathVariable String timeCapitao, @RequestBody Time time) {
+		time.atualizar(id, timeCapitao, timeService);
+	}
+	
 	@RequestMapping(method = RequestMethod.GET, path = "participantes/{id}")
 	public List<TimesCampeonato> listarTimesParticipantes(@PathVariable Long id) {
 		return timeService.listarTimesParticipantes(id);
@@ -43,6 +49,16 @@ public class TimeController {
 	@RequestMapping(method = RequestMethod.GET, path = "listar")
 	public List<Time> listarTimes() {
 		return timeService.listarTimes();
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, path = "listar/{capitao}")
+	public List<Time> listarTimes(@PathVariable String capitao) {
+		return timeService.findTimeByCapitao(capitao);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, path = "{id}/{timeCapitao}")
+	public Time listarTimes(@PathVariable Long id, @PathVariable String timeCapitao) {
+		return timeService.findTime(id, timeCapitao);
 	}
 
 }

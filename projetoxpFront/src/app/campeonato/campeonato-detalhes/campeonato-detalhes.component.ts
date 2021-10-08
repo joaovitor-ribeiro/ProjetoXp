@@ -6,6 +6,7 @@ import { CampeonatoDto } from '../model/campeonatoDto.model';
 import { CampeonatoService } from '../service/campeonato.service';
 import { TimesParticipantes } from '../model/TimesParticipates.model';
 import { TimeService } from 'src/app/time/service/time.service';
+import { AuthenticationService } from 'src/app/usuario/service/authentication.service';
 
 @Component({
   selector: 'app-campeonato-detalhes',
@@ -16,7 +17,7 @@ import { TimeService } from 'src/app/time/service/time.service';
 
 export class CampeonatoDetalhesComponent  implements OnInit, OnDestroy {
 
-  displayedColumns: string[] = ['id', 'name', 'capitao'];
+  displayedColumns: string[] = ['id', 'name', 'capitao', 'edit'];
 
   timesParticipantes!: TimesParticipantes[]
   timesParticipantesA!: string;
@@ -32,17 +33,21 @@ export class CampeonatoDetalhesComponent  implements OnInit, OnDestroy {
   cadastrarTime = false;
   myMap = new Map();
   edit = false;
+  usuario!: any;
 
   constructor(
     private timeService: TimeService,
     private route: ActivatedRoute,
     private router: Router,
+    private loginService: AuthenticationService,
   ) { }
 
   ngOnInit(): void {
+    this.usuario = this.loginService.getSessionItem();
     this.inscricao = this.route.data.subscribe(
       (campeonato) => {
         this.campeonatoDto = (campeonato.detalhes);
+        this.edit = this.campeonatoDto.adm == this.usuario;
         this.route.params.subscribe(params =>{
           this.timeService.getTimesParticipantes(params['id']).subscribe(
             result => this.preencheTimesParticipantes(result)
@@ -137,6 +142,7 @@ export class CampeonatoDetalhesComponent  implements OnInit, OnDestroy {
   }
 
   ganhou(idTime: any){
+    console.log(idTime);
     this.timeService.atualizarPosicao(this.id, idTime).subscribe(
       sucess => console.log('sucesso'),
       error => console.log('error'),

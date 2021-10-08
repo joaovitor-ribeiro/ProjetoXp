@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription, Observable, of } from 'rxjs';
 import { BaseFormComponent } from '../../shared/base-form/base-form.component';
 import { CampeonatoDto } from '../model/campeonatoDto.model';
@@ -20,29 +20,27 @@ export class CampeonatoFormComponent extends BaseFormComponent implements OnInit
   inscricao!: Subscription;
   editar: boolean = false;
   id!: number;
+  select = 'time';
+
+  selectOptions = [
+    {nome: 4,  value:4},
+    {nome: 8,  value:8},
+    {nome: 16, value:16},
+    {nome: 32, value:32},
+    {nome: 64, value:64},
+  ];
 
   constructor(
     private formBuilder: FormBuilder,
     private campeonatoFormService: CampeonatoFormService,
     private service: UploadFileService,
     private route: ActivatedRoute,
-  ) {
-    super();
-  }
+    private router: Router,
+    ) {
+      super();
+    }
 
-  ngOnInit(): void {
-    this.formulario = this.formBuilder.group({
-      'nome': [null, [Validators.required, Validators.minLength(3), Validators.maxLength(35)]],
-      'dataInicio': [null, [Validators.required]],
-      'dataTermino': [null, [Validators.required]],
-      'time': [null, [Validators.required]],
-      'premiacao': [null, [Validators.required]],
-      'adm': [null, [Validators.required]],
-      'descricao': [null, [Validators.required]],
-      'regra': [null, [Validators.required]],
-      'file': [null, []],
-    });
-
+    ngOnInit(): void {
     this.inscricao = this.route.data.subscribe(
       (campeonato) => {
         if(campeonato.form != undefined){
@@ -55,6 +53,17 @@ export class CampeonatoFormComponent extends BaseFormComponent implements OnInit
         }
       }
     );
+    this.formulario = this.formBuilder.group({
+      'nome': [null, [Validators.required, Validators.minLength(3), Validators.maxLength(35)]],
+      'dataInicio': [null, [Validators.required]],
+      'dataTermino': [null, [Validators.required]],
+      'time': [this.selectOptions[0], [Validators.required]],
+      'premiacao': [null, [Validators.required]],
+      'adm': [null, [Validators.required]],
+      'descricao': [null, [Validators.required]],
+      'regra': [null, [Validators.required]],
+      'file': [null, []],
+    });
   }
 
   populaDadosForm(campeonato: CampeonatoDto) {
@@ -75,9 +84,7 @@ export class CampeonatoFormComponent extends BaseFormComponent implements OnInit
   onChange(event: any) {
     this.nameFile = event.srcElement.files[0].name;
     this.files = event.srcElement.files[0];
-    this.preenchendoCampeonatoDto();
-    console.log(this.campeonatoDto);
-    console.log(this.formulario.controls['dataInicio']?.value);
+    console.log(this.formulario.get('time')?.value);
   }
 
   onUpload() {
@@ -93,7 +100,7 @@ export class CampeonatoFormComponent extends BaseFormComponent implements OnInit
         this.onUpload();
       }
       this.campeonatoFormService.atualizarCampeonato(this.id, this.campeonatoDto).subscribe(
-        sucess => (this.formulario.reset(), this.editar = false),
+        sucess =>  this.router.navigate(['campeonato']),
         error => console.log('error'),
         () => console.log('request completo')
       );
@@ -102,7 +109,7 @@ export class CampeonatoFormComponent extends BaseFormComponent implements OnInit
         this.onUpload();
       }
       this.campeonatoFormService.cadastroCampeonato(this.campeonatoDto).subscribe(
-        sucess => this.formulario.reset(),
+        sucess => this.router.navigate(['campeonato']),
         error => console.log('error'),
         () => console.log('request completo')
       );

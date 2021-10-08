@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import br.com.projetoxp.service.TimeService;
+
 @Entity
 public class Time {
 	
@@ -112,6 +114,19 @@ public class Time {
 
 	public void setPontuacao(int pontuacao) {
 		this.pontuacao = pontuacao;
+	}
+
+	public void atualizar(Long id, String timeCapitao, TimeService timeService) {
+		Time time = timeService.findTime(id, timeCapitao);
+		System.out.println(time.getCapitao() + this.capitao);
+		time.setNome(this.nome);
+		time.setCapitao(this.capitao);
+		time.setTimeCapitao(this.nome + this.capitao);
+		time.setJogador2(this.jogador2);
+		time.setJogador3(this.jogador3);
+		time.setJogador4(this.jogador4);
+		time.setJogador5(this.jogador5);
+		time.setFile(this.file);
 	}
 
 

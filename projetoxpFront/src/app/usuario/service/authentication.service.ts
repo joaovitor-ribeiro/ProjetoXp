@@ -12,24 +12,24 @@ export class AuthenticationService {
   private readonly XP = `${environment.XP}usuario`
   private isLogin = false;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-authenticate(nick: string, senha: string) {
-  this.http.get(this.XP+'/login/' + nick + '/' + senha).subscribe(
-    result => this.isLogin = this.getResult(result,nick)
-  );
-  return this.isLogin;
-}
+  authenticate(nick: string, senha: string) {
+    this.http.get(this.XP + '/login/' + nick + '/' + senha).subscribe(
+      result => this.isLogin = this.getResult(result, nick)
+    );
+    return this.isLogin;
+  }
 
-isUserLoggedIn() {
-  let user = sessionStorage.getItem('username')
-  console.log(!(user === null))
-  return !(user === null)
-}
+  isUserLoggedIn() {
+    let user = sessionStorage.getItem('username')
+    console.log(!(user === null))
+    return !(user === null)
+  }
 
-logOut() {
-  sessionStorage.removeItem('username')
-}
+  logOut() {
+    sessionStorage.removeItem('username')
+  }
 
 getResult(result: any, nick: string){
   if (result) {
@@ -39,7 +39,6 @@ getResult(result: any, nick: string){
   } else {
     return false;
   }
-}
 
 getSessionNick(){
   let user = sessionStorage.getItem('username')

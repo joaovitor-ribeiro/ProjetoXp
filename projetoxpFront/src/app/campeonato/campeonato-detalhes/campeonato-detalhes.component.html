@@ -74,7 +74,7 @@
 
         <ng-container matColumnDef="id">
           <th mat-header-cell *matHeaderCellDef> Número do Time </th>
-          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+          <td mat-cell *matCellDef="let i = index"> {{i+1}} </td>
         </ng-container>
 
         <ng-container matColumnDef="name">
@@ -85,6 +85,15 @@
         <ng-container matColumnDef="capitao">
           <th mat-header-cell *matHeaderCellDef> Capitão do time</th>
           <td mat-cell *matCellDef="let element"> {{element.capitao}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="edit">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element" >
+            <a class="color" href="/time/{{id}}/editar/{{element.timeCapitao}}">
+              <i *ngIf="element.capitao == usuario" class="material-icons">edit</i>
+            </a>
+          </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

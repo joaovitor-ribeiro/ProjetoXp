@@ -11,13 +11,16 @@ import { Time } from "../model/time.model";
 })
 
 export class TimeService {
-
   private readonly XP = `${environment.XP}time`
 
   constructor(private http: HttpClient) {}
 
   public cadastrarTime(id: number, timeDto: Time){
     return this.http.post(this.XP + `/cadastro/${id}`, timeDto).pipe(take(1));
+  }
+
+  editarTime(id: number, timeCapitao: string, time: Time) {
+    return this.http.put(this.XP + '/editar/' + id + '/' + timeCapitao, time).pipe(take(1));
   }
 
   public getTimesParticipantes(id:any): Observable<TimesParticipantes[]> {
@@ -30,6 +33,14 @@ export class TimeService {
 
   public getTimes(): Observable<Time[]> {
     return this.http.get<Time[]>(this.XP+'/listar');
+  }
+
+  listarTimeByUsuario(usuario: string): Observable<Time[]> {
+    return this.http.get<Time[]>(this.XP+'/listar/'+usuario);
+  }
+
+  getTime(id: any, timeCapitao: any): Observable<Time> {
+    return this.http.get<Time>(this.XP + '/' + id + '/' + timeCapitao);
   }
 
 }

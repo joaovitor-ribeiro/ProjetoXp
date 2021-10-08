@@ -7,6 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 import { TimeRankingComponent } from './time-ranking/time-ranking.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatTableModule} from '@angular/material/table';
+import {MatSelectModule} from '@angular/material/select';
 
 
 
@@ -22,7 +23,8 @@ import {MatTableModule} from '@angular/material/table';
     HttpClientModule,
     SharedModule,
     MatSidenavModule,
-    MatTableModule
+    MatTableModule,
+    MatSelectModule,
   ]
 })
 export class TimeModule { }

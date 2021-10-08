@@ -15,7 +15,8 @@ import { UsuarioFormComponent } from './usuario/form/usuario-form.component';
 import { UsuarioFormResolver } from './usuario/guards/usuarioForm.resolver';
 
 const routes: Routes = [
-  { path: 'time/:id/cadastro', component: TimeFormComponent,canActivate: [AuthGuard] },
+  { path: 'time/:id/cadastro', component: TimeFormComponent, canActivate: [AuthGuard] },
+  { path: 'time/:id/editar/:timeCapitao', component: TimeFormComponent, canActivate: [AuthGuard] },
   { path: 'ranking/time', component: TimeRankingComponent },
   // {
   //   path: 'campeonato',
@@ -26,10 +27,10 @@ const routes: Routes = [
     resolve: { form: CampeonatoFormResolver },
     canActivate: [AuthGuard]
   },
-  //{ path: '**', component: CampeonatoFormComponent },
-  {
-    path: 'usuario/cadastro', component: UsuarioFormComponent,
-  },
+  // { path: '**', component: CampeonatoFormComponent },
+  // {
+  //   path: 'usuario/cadastro', component: UsuarioFormComponent,
+  // },
   {
     path: 'usuario/editar/:nick', component: UsuarioFormComponent,
     resolve: { form: UsuarioFormResolver },
@@ -47,11 +48,6 @@ const routes: Routes = [
     path: 'campeonato/detalhes/:id', component: CampeonatoDetalhesComponent,
     resolve: { detalhes: CampeonatoDetalhesResolver },
   },
-  //{ path: '**', component: CampeonatoFormComponent },
-  // {
-  //   path: 'usuario',
-  //   loadChildren: () => import('./cadastro-usuario/usuario.module').then(m => m.UsuarioModule),
-  // },
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent,
     canActivate: [AuthGuard]

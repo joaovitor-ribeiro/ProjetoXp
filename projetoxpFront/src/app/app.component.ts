@@ -11,4 +11,5 @@ export class AppComponent {
   title = 'projetoxpFront';
 
   constructor(public loginService: AuthenticationService){}
+
 }

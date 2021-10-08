@@ -1,11 +1,11 @@
 package br.com.projetoxp.controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,10 +24,13 @@ public class UsuarioController {
 	
 	@Autowired
 	private UsuarioRepository usuarioRepository;
+	@Autowired
+	private PasswordEncoder encoder;
 	
 	@RequestMapping(method = RequestMethod.POST, path = "cadastro")
 	public void cadastroUsuario(@RequestBody UsuarioDto usuarioDto) {
 		Usuario usuario = usuarioDto.converteUsuario();
+		usuario.setSenha(encoder.encode(usuario.getSenha()));
 		usuarioRepository.save(usuario);
 	}
 	
@@ -51,10 +54,9 @@ public class UsuarioController {
 	public boolean login(@PathVariable String nick, @PathVariable String senha) {
 		Optional<Usuario> usuario = usuarioRepository.findByNick(nick);
 		if(!usuario.isEmpty()) {
-			if(usuario.get().getSenha().equals(senha)) {
+			if(encoder.matches(senha, usuario.get().getSenha())) {
 				return true;
 			}
-			return false;
 		}
 		return false; 
 	}

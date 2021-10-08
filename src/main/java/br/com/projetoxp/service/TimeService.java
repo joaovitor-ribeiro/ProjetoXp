@@ -58,6 +58,10 @@ public class TimeService {
 		timescampeonato.setPosicao(timescampeonato.getPosicao() / 2);
 	}
 	
+	public List<Time> findTimeByCapitao(String capitao){
+		return timeRepository.findByCapitao(capitao);
+	}
+	
 	public void atualizarPontuacao(List<Time> times, Long id) {
 		for (int i = 0; i < times.size(); i++) {
 			if(times.get(i).getIdCampeonato() == id) {
@@ -65,5 +69,15 @@ public class TimeService {
 			}
 		}
 	}
-	
+
+	public Time findTime(Long id, String timeCapitao) {
+		List<Time> times = timeRepository.findByIdCampeonato(id);
+		for (Time time : times) {
+			if(time.getTimeCapitao().equals(timeCapitao)) {
+				return time;
+			}
+		}
+		return null;
+	}
+
 }

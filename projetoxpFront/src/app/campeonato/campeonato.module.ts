@@ -16,6 +16,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatTabsModule} from '@angular/material/tabs';
 import { CampeonatoDetalhesResolver } from './guards/campeonato-detalhes.resolver';
 import {MatSelectModule} from '@angular/material/select';
+import {MatInputModule} from '@angular/material/input';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatTableModule,
     MatSidenavModule,
     MatTabsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatInputModule,
   ],
   providers: [
     CampeonatoService,

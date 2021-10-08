@@ -14,11 +14,6 @@ const INPUT_FIELD_VALUE_ACCESSOR: any = {
 })
 export class InputFieldComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
   @Input() classeCssLabel: any;
   @Input() classeCssInput: any;
   @Input() id!: string;
@@ -30,6 +25,11 @@ export class InputFieldComponent implements OnInit {
   isPrimiacao = false;
 
   private innerValue: any;
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
 
   get value() {
     return this.innerValue;
@@ -67,7 +67,7 @@ export class InputFieldComponent implements OnInit {
       this.mask = '';
     }else{
       this.isPrimiacao = true;
-      this.mask = '0.000.000,00'
+      this.mask = '0.000.000.00';
     }
   }
 

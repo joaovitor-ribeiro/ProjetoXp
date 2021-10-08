@@ -18,7 +18,7 @@
         <div class="card-content" style="color: black;">
           {{campeonato.descricao}}
         </div>
-        <div class="card-action color">
+        <div *ngIf="campeonato.adm == usuario" class="card-action color">
           <a class="color" href="/campeonato/editar/{{campeonato.id}}">Editar</a>
         </div>
       </div>

@@ -1,5 +1,7 @@
 package br.com.projetoxp.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,9 +18,30 @@ public class CampeonatoService {
 	@Autowired
 	private CampeoantoRepository campeonatoRepository;
 	
-	public void cadastrarCampeonato(CampeonatoDto campeonatoDto) {
-		Campeonato campeonato = campeonatoDto.converteCampeonato();
-		campeonatoRepository.save(campeonato);
+	public int cadastrarCampeonato(CampeonatoDto campeonatoDto) {
+		try {
+			Optional<Campeonato> optionalCampeonato = campeonatoRepository.findByNome(campeonatoDto.getNome());
+			if(optionalCampeonato.isEmpty()) {
+				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+				
+				Date date1;
+				Date date2;
+				Date dateHoje = new Date();
+				
+				date1 = dateFormat.parse(campeonatoDto.getDataInicio());
+				date2 = dateFormat.parse(campeonatoDto.getDataTermino());
+				
+				if(!(date1.compareTo(date2) < 0)  ||  !(dateHoje.compareTo(date2) < 0)){
+					return 2;
+				} 
+				Campeonato campeonato = campeonatoDto.converteCampeonato();
+				campeonatoRepository.save(campeonato);
+				return 3;
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return 1;
 	}
 	
 	public List<Campeonato> listarCampeonatos() {
@@ -34,8 +57,30 @@ public class CampeonatoService {
 		return null;
 	}
 	
-	public void atualizar(Long id, Campeonato campeonato){
-		campeonato.atualizar(id, campeonatoRepository);
+	public int atualizar(Long id, Campeonato campeonato){
+		try {
+			Campeonato campeonatoId = campeonatoRepository.getById(id);
+			Optional<Campeonato> optionalCampeonato = campeonatoRepository.findByNome(campeonato.getNome());
+			Campeonato campeonatoNome = optionalCampeonato.get();
+			if(campeonatoId.getId() == campeonatoNome.getId()) {
+				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+				Date date1;
+				Date date2;
+				Date dateHoje = new Date();
+
+				date1 = dateFormat.parse(campeonatoId.getDataInicio());
+				date2 = dateFormat.parse(campeonatoId.getDataTermino());
+				
+				if(!(date1.compareTo(date2) < 0)  ||  !(dateHoje.compareTo(date2) < 0)){
+					return 2;
+				} 
+				campeonato.atualizar(id, campeonatoRepository);
+				return 3;
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return 1;
 	}
 	
 }

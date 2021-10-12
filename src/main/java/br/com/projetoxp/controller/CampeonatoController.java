@@ -25,8 +25,8 @@ public class CampeonatoController {
 	private CampeonatoService campeonatoService;
 	
 	@RequestMapping(method = RequestMethod.POST, path = "cadastro")
-	public void cadastroCampeonato(@RequestBody CampeonatoDto campeonatoDto) {
-		campeonatoService.cadastrarCampeonato(campeonatoDto);
+	public int cadastroCampeonato(@RequestBody CampeonatoDto campeonatoDto) {
+		return campeonatoService.cadastrarCampeonato(campeonatoDto);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, path = "listar")
@@ -41,8 +41,8 @@ public class CampeonatoController {
 	
 	@RequestMapping(method = RequestMethod.PUT, path = "/atualizar/{id}")
 	@Transactional
-	public void atualizar(@PathVariable Long id, @RequestBody Campeonato campeonato){
-		campeonatoService.atualizar(id, campeonato);
+	public int atualizar(@PathVariable Long id, @RequestBody Campeonato campeonato){
+		return campeonatoService.atualizar(id, campeonato);
 	}
 	
 }

@@ -45,7 +45,7 @@ export class CampeonatoFormComponent extends BaseFormComponent implements OnInit
         'nome': [null, [Validators.required, Validators.minLength(3), Validators.maxLength(35)]],
         'dataInicio': [null, [Validators.required]],
         'dataTermino': [null, [Validators.required]],
-        'time': [this.selectOptions[0], [Validators.required]],
+        'time': [this.selectOptions[0].nome, [Validators.required]],
         'premiacao': [null, [Validators.required]],
         'adm': [null, [Validators.required]],
         'descricao': [null, [Validators.required]],
@@ -101,18 +101,33 @@ export class CampeonatoFormComponent extends BaseFormComponent implements OnInit
         this.onUpload();
       }
       this.campeonatoFormService.atualizarCampeonato(this.id, this.campeonatoDto).subscribe(
-        sucess =>  this.router.navigate(['campeonato']),
-        error => console.log('error'),
-        () => console.log('request completo')
+        result =>{
+          console.log(result);
+          if(result == 3){
+            this.router.navigate(['campeonato']);
+            alert('Campeonato cadastrado com sucesso');
+          }else if(result == 1){
+            alert('Nome já cadastrado');
+          }else{
+            alert('Data inváida')
+          }
+        }
       );
     }else{
       if(this.nameFile != ''){
         this.onUpload();
       }
       this.campeonatoFormService.cadastroCampeonato(this.campeonatoDto).subscribe(
-        sucess => this.router.navigate(['campeonato']),
-        error => console.log('error'),
-        () => console.log('request completo')
+        result =>{
+          if(result == 3){
+            this.router.navigate(['campeonato']);
+            alert('Campeonato cadastrado com sucesso');
+          }else if(result == 1){
+            alert('Nome já cadastrado');
+          }else{
+            alert('Data inváida')
+          }
+        }
       );
     }
   }

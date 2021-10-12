@@ -25,10 +25,18 @@ public class TimeService {
 	@Autowired
 	private TimeCampeonatoService timesCampeonatoService;
 	
-	public void cadastrarNovoTimeNoCampeonato(Long id, Time time) {
+	public int cadastrarNovoTimeNoCampeonato(Long id, Time time) {
 		Optional<Campeonato> optionalCampeonato = campeonatoRepository.findById(id);
 		if(optionalCampeonato.isPresent()) {
 			Campeonato campeonato = optionalCampeonato.get();
+			
+			List<Time> timeLista = timeRepository.findByCapitao(time.getCapitao());
+			
+			for (Time time2 : timeLista) {
+				if(time2.getIdCampeonato() == id) {
+					return 2;
+				}
+			}
 			
 			List<TimesCampeonato> timesParticipantes = timesCampeonatoRepository.findByIdCampeonato(id);
 			TimesCampeonato timesCampeonato = timesCampeonatoService.create(campeonato, time, timesParticipantes.size() + 1);
@@ -39,6 +47,7 @@ public class TimeService {
 		}
 		time.setPontuacao(0);
 		timeRepository.save(time);
+		return 1;
 	}
 	
 	public List<TimesCampeonato> listarTimesParticipantes(Long id) {
@@ -78,6 +87,22 @@ public class TimeService {
 			}
 		}
 		return null;
+	}
+
+	public int atualizarTimeNoCampeonato(Long id, String timeCapitao, Time time) {
+		int contador = 0;
+		List<Time> timeLista = timeRepository.findByCapitao(time.getCapitao());
+
+		for (Time time2 : timeLista) {
+			if(time2.getIdCampeonato() == id) {
+				contador++;
+			}
+		}
+		if(contador > 1) {
+			return 2;
+		}
+		time.atualizar(id, timeCapitao, this);
+		return 1;
 	}
 
 }

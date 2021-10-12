@@ -118,7 +118,6 @@ public class Time {
 
 	public void atualizar(Long id, String timeCapitao, TimeService timeService) {
 		Time time = timeService.findTime(id, timeCapitao);
-		System.out.println(time.getCapitao() + this.capitao);
 		time.setNome(this.nome);
 		time.setCapitao(this.capitao);
 		time.setTimeCapitao(this.nome + this.capitao);

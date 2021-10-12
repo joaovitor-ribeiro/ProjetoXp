@@ -1,22 +1,21 @@
-import { CampeonatoComponent } from './campeonato.component';
-import { SharedModule } from './../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CampeonatoFormComponent } from './campeonato-form/campeonato-form.component';
+
 import { CampeonatoRoutingModule } from './campeonato-routing.module';
+import { CampeonatoComponent } from './campeonato.component';
 import { CampeonatoResolver } from './guards/campeonato.resolver';
-import { HttpClientModule } from '@angular/common/http';
 import { CampeonatoService } from './service/campeonato.service';
-import { CampeonatoFormService } from './service/campeonato-form.service';
+import { CampeonatoFormComponent } from './campeonato-form/campeonato-form.component';
 import { CampeonatoFormResolver } from './guards/campeonatoForm.resolver';
+import { CampeonatoFormService } from './service/campeonato-form.service';
 import { CampeonatoDetalhesComponent } from './campeonato-detalhes/campeonato-detalhes.component';
-import {MatTableModule} from '@angular/material/table';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatTabsModule} from '@angular/material/tabs';
 import { CampeonatoDetalhesResolver } from './guards/campeonato-detalhes.resolver';
-import {MatSelectModule} from '@angular/material/select';
-import {MatInputModule} from '@angular/material/input';
+import { UploadFileService } from 'src/app/campeonato/service/upload-file.service';
+import { MatSidenavModule} from '@angular/material/sidenav';
+import { MatTableModule} from '@angular/material/table';
+import { MatTabsModule} from '@angular/material/tabs';
+import { SharedModule } from './../shared/shared.module';
 
 
 @NgModule({
@@ -27,20 +26,18 @@ import {MatInputModule} from '@angular/material/input';
   ],
   imports: [
     CommonModule,
+    CampeonatoRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
     SharedModule,
-    CampeonatoRoutingModule,
     MatTableModule,
     MatSidenavModule,
     MatTabsModule,
-    MatSelectModule,
-    MatInputModule,
   ],
   providers: [
     CampeonatoService,
     CampeonatoFormService,
+    UploadFileService,
     CampeonatoResolver,
     CampeonatoFormResolver,
     CampeonatoDetalhesResolver,

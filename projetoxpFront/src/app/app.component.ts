@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {MatMenuModule} from '@angular/material/menu';
 import { AuthenticationService } from './usuario/service/authentication.service';
 
 @Component({
@@ -9,7 +8,7 @@ import { AuthenticationService } from './usuario/service/authentication.service'
 })
 export class AppComponent {
   title = 'projetoxpFront';
-
-  constructor(public loginService: AuthenticationService){}
+  usuario: any = '';
+  constructor(public loginService: AuthenticationService){ this.usuario = loginService.getSessionNick()}
 
 }

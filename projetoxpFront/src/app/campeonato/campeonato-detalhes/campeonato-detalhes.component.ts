@@ -56,6 +56,7 @@ export class CampeonatoDetalhesComponent  implements OnInit, OnDestroy {
         })
       }
     );
+    console.log(this.campeonatoDto.file);
   }
 
   ngOnDestroy(): void {

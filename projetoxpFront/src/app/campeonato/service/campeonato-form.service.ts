@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { take } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { CampeonatoDto } from '../model/campeonatoDto.model';
 
@@ -14,12 +13,12 @@ export class CampeonatoFormService {
 
   constructor(private http: HttpClient) {}
 
-  public cadastroCampeonato(campeonato: CampeonatoDto) {
-    return this.http.post(this.XP+'/cadastro', campeonato).pipe(take(1));
+  public cadastroCampeonato(campeonato: CampeonatoDto): Observable<number> {
+    return this.http.post<number>(this.XP+'/cadastro', campeonato);
   }
 
-  public atualizarCampeonato(id: number, campeonato: CampeonatoDto) {
-    return this.http.put(this.XP+'/atualizar/' + id, campeonato).pipe(take(1));
+  public atualizarCampeonato(id: number, campeonato: CampeonatoDto): Observable<number> {
+    return this.http.put<number>(this.XP+'/atualizar/' + id, campeonato);
   }
 
   public retorncampeonato(id: number): Observable<CampeonatoDto> {

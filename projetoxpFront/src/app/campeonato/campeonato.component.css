@@ -2,4 +2,7 @@
   width: 340px;
   height: 170px;
 }
-
+.centralizar {
+  display: flex!important;
+  justify-content: center!important;
+}

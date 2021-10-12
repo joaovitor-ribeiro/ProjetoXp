@@ -23,3 +23,9 @@ header, main, footer {
 nav{
   width: 0;
 }
+
+.center{
+  display: block!important;
+  margin-left: auto!important;
+  margin-right: auto!important;
+}

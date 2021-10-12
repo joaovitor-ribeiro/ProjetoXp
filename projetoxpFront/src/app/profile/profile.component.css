@@ -1,0 +1,30 @@
+.imagem{
+  width: 100px;
+  height: 100px;
+  float: left;
+}
+
+.profileIcon {
+  margin-top: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 16vw;
+  height: 16vw;
+}
+.centralizar {
+  display: flex!important;
+  justify-content: center!important;
+}
+
+.nick {
+  font-family: Helvetica, sans-serif, Arial;
+  font-size: 20px;
+  text-align: center;
+}
+
+.center{
+  display: block!important;
+  margin-left: auto!important;
+  margin-right: auto!important;
+}

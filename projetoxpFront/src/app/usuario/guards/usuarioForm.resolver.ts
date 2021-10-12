@@ -12,6 +12,12 @@ export class UsuarioFormResolver implements Resolve<UsuarioDto> {
 
     resolve(route: ActivatedRouteSnapshot): Observable<UsuarioDto>{
         let nick = route.params['nick'];
+        this.campeonatoFormService.getUsuarioNick(nick).subscribe(
+          result => {
+            console.log(result);
+            console.log(nick);
+          }
+        )
         return this.campeonatoFormService.getUsuarioNick(nick);
     }
 }

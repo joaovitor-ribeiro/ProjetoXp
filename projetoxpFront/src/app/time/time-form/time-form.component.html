@@ -2,7 +2,7 @@
 
   <div class="container" style="margin-top: -60px;">
     <div class="row">
-      <div *ngIf="!semTime" class="input-field col s12" style="padding-top: 20px;">
+      <div *ngIf="!semTime && !edit" class="input-field col s12" style="padding-top: 20px;">
         <label class="label_select">Time</label>
         <select class="browser-default select_class" (blur)="preencheFormulario(time)">
           <option *ngFor="let time of time$ | async" [ngValue]="time.nome">{{time.nome}}</option>
@@ -57,7 +57,8 @@
       </div>
     </div>
 
-    <button type="submit" class="btn background botao">Submit</button>
+    <button *ngIf="!edit" type="submit" class="btn background botao">Cadastrar</button>
+    <button *ngIf="edit" type="submit" class="btn background botao">Editar</button>
 
   </div>
 

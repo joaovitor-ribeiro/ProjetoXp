@@ -15,12 +15,12 @@ export class TimeService {
 
   constructor(private http: HttpClient) {}
 
-  public cadastrarTime(id: number, timeDto: Time){
-    return this.http.post(this.XP + `/cadastro/${id}`, timeDto).pipe(take(1));
+  public cadastrarTime(id: number, timeDto: Time): Observable<number>{
+    return this.http.post<number>(this.XP + `/cadastro/${id}`, timeDto);
   }
 
-  editarTime(id: number, timeCapitao: string, time: Time) {
-    return this.http.put(this.XP + '/editar/' + id + '/' + timeCapitao, time).pipe(take(1));
+  editarTime(id: number, timeCapitao: string, time: Time): Observable<number> {
+    return this.http.put<number>(this.XP + '/editar/' + id + '/' + timeCapitao, time);
   }
 
   public getTimesParticipantes(id:any): Observable<TimesParticipantes[]> {

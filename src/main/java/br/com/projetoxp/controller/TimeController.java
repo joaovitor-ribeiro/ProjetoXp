@@ -25,14 +25,14 @@ public class TimeController {
 	private TimeService timeService;
 	
 	@RequestMapping(method = RequestMethod.POST, path = "cadastro/{id}")
-	public void cadastrarTimeNoCampeonato(@PathVariable Long id, @RequestBody Time time) {
-		timeService.cadastrarNovoTimeNoCampeonato(id, time);
+	public int cadastrarTimeNoCampeonato(@PathVariable Long id, @RequestBody Time time) {
+		return timeService.cadastrarNovoTimeNoCampeonato(id, time);
 	}
 	
 	@RequestMapping(method = RequestMethod.PUT, path = "editar/{id}/{timeCapitao}")
 	@Transactional
-	public void editarTime(@PathVariable Long id, @PathVariable String timeCapitao, @RequestBody Time time) {
-		time.atualizar(id, timeCapitao, timeService);
+	public int editarTime(@PathVariable Long id, @PathVariable String timeCapitao, @RequestBody Time time) {
+		return timeService.atualizarTimeNoCampeonato(id, timeCapitao, time);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, path = "participantes/{id}")

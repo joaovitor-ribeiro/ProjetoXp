@@ -45,6 +45,7 @@ export class UsuarioFormComponent extends BaseFormComponent implements OnInit {
 
     this.inscricao = this.route.data.subscribe(
       (usuario) => {
+        console.log(usuario);
         if(usuario.form != undefined){
           this.usuarioDto = (usuario.form);
           this.populaDadosForm(usuario.form);
@@ -58,6 +59,7 @@ export class UsuarioFormComponent extends BaseFormComponent implements OnInit {
   }
 
   populaDadosForm(usuario: UsuarioDto) {
+    console.log(usuario);
     this.formulario.patchValue({
       nome: usuario.nome,
       nick: usuario.nick,

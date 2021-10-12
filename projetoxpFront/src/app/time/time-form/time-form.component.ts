@@ -88,24 +88,28 @@ export class TimeFormComponent extends BaseFormComponent implements OnInit {
         this.onUpload();
       }
       this.timeService.editarTime(this.id, this.idTime, this.time).subscribe(
-        sucess =>  {
-          alert('Time editado com sucesso'),
-          this.router.navigate(['campeonato/detalhes/', this.id])
+        result => {
+          if(result == 2){
+            alert('Capitão já cadastrado nesse campeonato');
+          }else{
+            alert('Time editado com sucesso'),
+            this.router.navigate(['campeonato/detalhes/', this.id])
+          }
         },
-        error => console.log('error'),
-        () => console.log('request completo')
       );
     }else{
       if(this.nameFile != ''){
         this.onUpload();
       }
       this.timeService.cadastrarTime(this.id, this.time).subscribe(
-        sucess => {
-          alert('Time cadastrado com sucesso'),
-          this.router.navigate(['campeonato/detalhes/', this.id])
+        result => {
+          if(result == 2){
+            alert('Capitão já cadastrado nesse campeonato');
+          }else{
+            alert('Time cadastrado com sucesso'),
+            this.router.navigate(['campeonato/detalhes/', this.id])
+          }
         },
-        error => console.log('error'),
-        () => console.log('request completo')
       );
     }
   }

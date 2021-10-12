@@ -1,4 +1,4 @@
-.teste{
+.imagem{
   width: 100px;
   height: 100px;
   float: left;
@@ -15,4 +15,10 @@
 
 .mat-column-file {
   text-align: left;
+}
+
+.centralizar {
+  /* margin-left: 250px; */
+  display: flex!important;
+  justify-content: center!important;
 }

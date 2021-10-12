@@ -14,7 +14,6 @@
 
       <app-input-field class="input-field col s6" formControlName="dataTermino" type="date" id="dataTermino"
         label="Data Término" [control]="formulario.get('dataTermino')"></app-input-field>
-
     </div>
 
     <div class="row" >
@@ -56,7 +55,8 @@
       </div>
     </div>
 
-    <button  type="submit" class="btn background botao">Submit</button>
+    <button *ngIf="!editar" type="submit" class="btn background botao">Cadastrar</button>
+    <button *ngIf="editar" type="submit" class="btn background botao">Editar</button>
 
   </div>
 

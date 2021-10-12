@@ -1,4 +1,5 @@
-  <img class="img" src="../../assets/campeonato/{{campeonatoDto.file}}" style="width: 100%; height: 300px;">
+  <img *ngIf="campeonatoDto.file != ''" class="img" src="../../../assets/campeonato/{{campeonatoDto.file}}" style="width: 100%; height: 300px;">
+  <img *ngIf="campeonatoDto.file == ''" class="img" src="../../../assets/campeonato/campeonatoDefault.jpg" style="width: 100%; height: 300px;">
   <div class="row" style="width: 100%;">
     <div class="col s4" >
       <p>Data: {{formataData(campeonatoDto.dataInicio)}} -  {{formataData(campeonatoDto.dataTermino)}}</p>

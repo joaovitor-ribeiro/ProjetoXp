@@ -5,7 +5,6 @@ import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { Campeonato } from '../model/campeonato.model';
 import { CampeonatoDto } from '../model/campeonatoDto.model';
-import { take } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'

@@ -16,6 +16,7 @@ import { MatSidenavModule} from '@angular/material/sidenav';
 import { MatTableModule} from '@angular/material/table';
 import { MatTabsModule} from '@angular/material/tabs';
 import { SharedModule } from './../shared/shared.module';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { SharedModule } from './../shared/shared.module';
     MatTableModule,
     MatSidenavModule,
     MatTabsModule,
+    MatSnackBarModule
   ],
   providers: [
     CampeonatoService,

@@ -24,6 +24,7 @@ const routes: Routes = [
   { path: 'ranking/time', component: TimeRankingComponent},
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
+  { path: '', redirectTo: 'campeonato', pathMatch: 'full'},
 ];
 
 @NgModule({

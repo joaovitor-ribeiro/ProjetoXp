@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription, Observable, of } from 'rxjs';
 import { BaseFormComponent } from '../../shared/base-form/base-form.component';
@@ -21,6 +22,8 @@ export class CampeonatoFormComponent extends BaseFormComponent implements OnInit
   editar: boolean = false;
   id!: number;
   select = 'time';
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
 
   selectOptions = [
     {nome: 4,  value:4},
@@ -36,6 +39,7 @@ export class CampeonatoFormComponent extends BaseFormComponent implements OnInit
     private service: UploadFileService,
     private route: ActivatedRoute,
     private router: Router,
+    private snackBar: MatSnackBar
     ) {
       super();
     }
@@ -105,11 +109,11 @@ export class CampeonatoFormComponent extends BaseFormComponent implements OnInit
           console.log(result);
           if(result == 3){
             this.router.navigate(['campeonato']);
-            alert('Campeonato cadastrado com sucesso');
+            this.openSnackBar('Campeonato atualizado com sucesso')
           }else if(result == 1){
-            alert('Nome já cadastrado');
+            this.openSnackBar('Nome já cadastrado')
           }else{
-            alert('Data inváida')
+            this.openSnackBar('Data inváida')
           }
         }
       );
@@ -119,13 +123,13 @@ export class CampeonatoFormComponent extends BaseFormComponent implements OnInit
       }
       this.campeonatoFormService.cadastroCampeonato(this.campeonatoDto).subscribe(
         result =>{
+          console.log(result);
           if(result == 3){
-            this.router.navigate(['campeonato']);
-            alert('Campeonato cadastrado com sucesso');
+            this.openSnackBar('Campeonato cadastrado com sucesso');
           }else if(result == 1){
-            alert('Nome já cadastrado');
+            this.openSnackBar('Nome já cadastrado');
           }else{
-            alert('Data inváida')
+            this.openSnackBar('Data inváida');
           }
         }
       );
@@ -142,6 +146,14 @@ export class CampeonatoFormComponent extends BaseFormComponent implements OnInit
     this.campeonatoDto.descricao = this.formulario.get('descricao')?.value;
     this.campeonatoDto.regra = this.formulario.get('regra')?.value;
     this.campeonatoDto.file = this.nameFile;
+  }
+
+  openSnackBar(text: string) {
+    this.snackBar.open(text, '', {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+      duration: 1500,
+    });
   }
 
 }

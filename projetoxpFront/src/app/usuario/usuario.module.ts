@@ -9,12 +9,14 @@ import { LogoutComponent } from "./logout/logout/logout.component";
 import { UsuarioRoutingModule } from "./router/usuario-routing.module";
 import { AuthenticationService } from "./service/authentication.service";
 import { UsuarioFormService } from "./service/usuario.service";
+import { AlterarSenhaComponent } from './alterar-senha/alterar-senha.component';
 
 @NgModule({
   declarations: [
     UsuarioFormComponent,
     LoginComponent,
     LogoutComponent,
+    AlterarSenhaComponent,
   ],
   imports: [
     CommonModule,

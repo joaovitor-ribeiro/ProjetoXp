@@ -1,0 +1,26 @@
+<form class="form-horizontal" [formGroup]="formulario" (ngSubmit)="onSubmit()">
+
+  <div class="container">
+
+    <div class="row">
+      <app-input-field class="input-field col s12" formControlName="senhaAntiga" type="password"
+      id="senhaAntiga" label="Senha" [control]="formulario.get('senhaAntiga')"
+      ></app-input-field>
+    </div>
+
+    <div class="row">
+      <app-input-field class="input-field col s12" formControlName="senhaNova" type="password"
+      id="senhaNova" label="Senha" [control]="formulario.get('senhaNova')"
+      ></app-input-field>
+    </div>
+
+    <div class="row">
+      <app-input-field class="input-field col s12" formControlName="senhaNovaRepetida" type="password"
+      id="senhaNovaRepetida" label="Senha" [control]="formulario.get('senhaNovaRepetida')"
+      ></app-input-field>
+    </div>
+
+    <button type="submit" class="btn btn-success" style="float: right;">
+      Alterar
+    </button>
+  </div>

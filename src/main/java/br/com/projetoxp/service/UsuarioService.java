@@ -7,6 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import br.com.projetoxp.model.Usuario;
+import br.com.projetoxp.model.dto.SenhaDto;
 import br.com.projetoxp.model.dto.UsuarioDto;
 import br.com.projetoxp.repository.UsuarioRepository;
 
@@ -52,5 +53,20 @@ public class UsuarioService {
 			return null;
 		}
 		return null; 
+	}
+	
+	public int alterarSenha( String nick, SenhaDto senhadto) {
+		Optional<Usuario> optionalUsuario = usuarioRepository.findByNick(nick);
+		if(!optionalUsuario.isEmpty()) {
+			if(encoder.matches(senhadto.getSenhaAntiga(), optionalUsuario.get().getSenha())) {
+				Usuario usuario = optionalUsuario.get();
+				usuario.setSenha(encoder.encode(senhadto.getSenhaNova()));
+				usuario.atualizar(nick,usuarioRepository);
+				return 1;
+			} else {
+				return 2;
+			}
+		}
+		return 3; 
 	}
 }

@@ -1,3 +1,4 @@
+import { senhaDTO } from './../model/senhaDTO.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
@@ -24,5 +25,9 @@ export class UsuarioFormService {
 
   public getUsuarioNick(nick: string): Observable<UsuarioDto> {
     return this.http.get<UsuarioDto>(this.XP+'/editar/' + nick);
+  }
+
+  public atualizarSenha(nick: string | null, senha: senhaDTO){
+    return this.http.put(this.XP+'/alterarSenha/' + nick, senha).pipe(take(1));
   }
 }

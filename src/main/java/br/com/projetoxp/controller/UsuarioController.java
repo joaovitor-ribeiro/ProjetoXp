@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.projetoxp.model.Usuario;
+import br.com.projetoxp.model.dto.SenhaDto;
 import br.com.projetoxp.model.dto.UsuarioDto;
 import br.com.projetoxp.service.UsuarioService;
 
@@ -41,5 +42,11 @@ public class UsuarioController {
 	@RequestMapping(method = RequestMethod.GET, path = "/login/{nick}/{senha}")
 	public UsuarioDto login(@PathVariable String nick, @PathVariable String senha) {
 		return usuarioService.login(nick, senha);
+	}
+	
+	@RequestMapping(method = RequestMethod.PUT, path = "/alterarSenha/{nick}")
+	@Transactional
+	public int alterarSenha(@PathVariable String nick, @RequestBody SenhaDto senhaDto) {
+		return usuarioService.alterarSenha(nick, senhaDto);
 	}
 }

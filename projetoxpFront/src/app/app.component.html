@@ -11,7 +11,7 @@
   </div></li>
   <li><a *ngIf="!loginService.isUserLoggedIn()" routerLink="/login">Entrar</a></li>
   <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/usuario/editar/{{loginService.getSessionNick()}}">Editar Usuário</a></li>
-  <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/usuario/alterar">Alterar Senha</a></li>
+  <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/usuario/alterarSenha">Alterar Senha</a></li>
   <li><a *ngIf="loginService.isUserLoggedIn()" routerLink="/logout">Sair</a></li>
   <li><div class="divider"></div></li>
   <li><a class="subheader">Campeonato</a></li>

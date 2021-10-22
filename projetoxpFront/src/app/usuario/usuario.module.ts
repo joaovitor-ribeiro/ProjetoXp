@@ -12,7 +12,6 @@ import { UsuarioFormService } from "./service/usuario.service";
 import { AlterarSenhaComponent } from './alterar-senha/alterar-senha.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 
-
 @NgModule({
   declarations: [
     UsuarioFormComponent,

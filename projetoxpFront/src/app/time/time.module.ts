@@ -8,6 +8,7 @@ import { TimeRoutingModule } from './time-routing.module';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatTableModule} from '@angular/material/table';
 import {MatSelectModule} from '@angular/material/select';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 
@@ -24,7 +25,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatSidenavModule,
     MatTableModule,
     MatSelectModule,
-    TimeRoutingModule
+    TimeRoutingModule,
+    MatSnackBarModule
   ]
 })
 export class TimeModule { }

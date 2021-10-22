@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { UploadFileService } from 'src/app/campeonato/service/upload-file.service';
@@ -21,6 +22,8 @@ export class UsuarioFormComponent extends BaseFormComponent implements OnInit {
   editar: boolean = false;
   nick!: string;
   inscricao!: Subscription;
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -28,6 +31,7 @@ export class UsuarioFormComponent extends BaseFormComponent implements OnInit {
     private service: UploadFileService,
     private route: ActivatedRoute,
     private router: Router,
+    private snackBar: MatSnackBar
   ) {
     super();
   }
@@ -107,14 +111,22 @@ export class UsuarioFormComponent extends BaseFormComponent implements OnInit {
       this.usuarioFormService.cadastroUsuario(this.usuarioDto).subscribe(
        result => {
          if(!result){
-          alert('Usuario cadastrado com sucesso');
+          this.openSnackBar('Usuario cadastrado com sucesso');
           this.router.navigate(['login']);
          }else{
-          alert('Usuario já cadastrado');
+          this.openSnackBar('Usuario já cadastrado');
          }
        }
       );
     }
+  }
+
+  openSnackBar(text: string) {
+    this.snackBar.open(text, '', {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+      duration: 1500,
+    });
   }
 
 }

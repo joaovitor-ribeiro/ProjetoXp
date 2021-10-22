@@ -8,6 +8,7 @@ import { TimeService } from '../service/time.service';
 import { Time } from '../model/time.model';
 import { AuthenticationService } from './../../usuario/service/authentication.service';
 import { Observable } from 'rxjs';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-time-form',
@@ -25,6 +26,8 @@ export class TimeFormComponent extends BaseFormComponent implements OnInit {
   time$!: Observable<Time[]>
   edit = false;
   semTime = false;
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
 
   constructor(
     private timeService: TimeService,
@@ -32,7 +35,8 @@ export class TimeFormComponent extends BaseFormComponent implements OnInit {
     private service: UploadFileService,
     private route: ActivatedRoute,
     private router: Router,
-    private login: AuthenticationService
+    private login: AuthenticationService,
+    private snackBar: MatSnackBar
   ) {
     super();
   }
@@ -60,11 +64,11 @@ export class TimeFormComponent extends BaseFormComponent implements OnInit {
 
     this.formulario = this.formBuilder.group({
       'nome': [null, [Validators.required, Validators.minLength(3), Validators.maxLength(35)]],
-      'capitao': [null, []],
-      'jogador2': [null, []],
-      'jogador3': [null, []],
-      'jogador4': [null, []],
-      'jogador5': [null, []],
+      'capitao': [null, [Validators.required]],
+      'jogador2': [null, [Validators.required]],
+      'jogador3': [null, [Validators.required]],
+      'jogador4': [null, [Validators.required]],
+      'jogador5': [null, [Validators.required]],
       'file': [null, []],
     });
   }
@@ -79,6 +83,7 @@ export class TimeFormComponent extends BaseFormComponent implements OnInit {
       jogador5: time.jogador5,
       file: time.file,
     });
+    this.nameFile = time.file;
   }
 
   submit() {
@@ -90,24 +95,25 @@ export class TimeFormComponent extends BaseFormComponent implements OnInit {
       this.timeService.editarTime(this.id, this.idTime, this.time).subscribe(
         result => {
           if(result == 2){
-            alert('Capitão já cadastrado nesse campeonato');
+            this.openSnackBar('Capitão já cadastrado nesse campeonato');
           }else{
-            alert('Time editado com sucesso'),
-            this.router.navigate(['campeonato/detalhes/', this.id])
+            this.openSnackBar('Time editado com sucesso');
+            this.router.navigate(['campeonato/detalhes/', this.id]);
           }
         },
-      );
-    }else{
-      if(this.nameFile != ''){
-        this.onUpload();
-      }
-      this.timeService.cadastrarTime(this.id, this.time).subscribe(
-        result => {
+        );
+      }else{
+        if(this.nameFile != ''){
+          this.onUpload();
+        }
+        this.timeService.cadastrarTime(this.id, this.time).subscribe(
+          result => {
+          console.log(result);
           if(result == 2){
-            alert('Capitão já cadastrado nesse campeonato');
+            this.openSnackBar('Capitão já cadastrado nesse campeonato');
           }else{
-            alert('Time cadastrado com sucesso'),
-            this.router.navigate(['campeonato/detalhes/', this.id])
+            this.openSnackBar('Time cadastrado com sucesso');
+            this.router.navigate(['campeonato/detalhes/', this.id]);
           }
         },
       );
@@ -135,5 +141,13 @@ export class TimeFormComponent extends BaseFormComponent implements OnInit {
     this.time.jogador4     = this.formulario.get('jogador4')?.value;
     this.time.jogador5     = this.formulario.get('jogador5')?.value;
     this.time.file         = this.nameFile;
+  }
+
+  openSnackBar(text: string) {
+    this.snackBar.open(text, '', {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+      duration: 1500,
+    });
   }
 }

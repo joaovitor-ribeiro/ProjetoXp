@@ -180,7 +180,7 @@ export class CampeonatoDetalhesComponent  implements OnInit, OnDestroy {
 
   premiacao(premiacao: any){
     premiacao = premiacao + '';
-    return  premiacao.replace(/^(\d{1})?(\d{3})?(\d{3})?(\d{2})/, 'R$ $1.$2.$3,$4');;
+    return  premiacao.replace(/^(\d{1})?(\d{3})?(\d{3})?(\d{2})/, 'R$ $1.$2.$3,$4');
   }
 
   cadastroTime(){

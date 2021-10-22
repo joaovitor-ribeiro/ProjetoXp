@@ -10,6 +10,8 @@ import { UsuarioRoutingModule } from "./router/usuario-routing.module";
 import { AuthenticationService } from "./service/authentication.service";
 import { UsuarioFormService } from "./service/usuario.service";
 import { AlterarSenhaComponent } from './alterar-senha/alterar-senha.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import { AlterarSenhaComponent } from './alterar-senha/alterar-senha.component';
     ReactiveFormsModule,
     SharedModule,
     UsuarioRoutingModule,
+    MatSnackBarModule
   ],
   providers: [
     UsuarioFormService,

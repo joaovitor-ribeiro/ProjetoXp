@@ -56,18 +56,18 @@ export class CampeonatoFormComponent extends BaseFormComponent implements OnInit
         'regra': [null, [Validators.required]],
         'file': [null, []],
       });
-    this.inscricao = this.route.data.subscribe(
-      (campeonato) => {
-        console.log(campeonato);
-        if(campeonato.form != undefined){
-          this.campeonatoDto = (campeonato.form);
-          this.populaDadosForm(campeonato.form);
-          this.route.params.subscribe(params =>{
-            this.editar = true;
-            this.id = params['id'];
-          })
+      this.inscricao = this.route.data.subscribe(
+        (campeonato) => {
+          console.log(campeonato);
+          if(campeonato.form != undefined){
+            this.campeonatoDto = (campeonato.form);
+            this.populaDadosForm(campeonato.form);
+            this.route.params.subscribe(params =>{
+              this.editar = true;
+              this.id = params['id'];
+            })
+          }
         }
-      }
     );
 
   }
@@ -85,6 +85,11 @@ export class CampeonatoFormComponent extends BaseFormComponent implements OnInit
       file: campeonato.file
     });
     this.nameFile = campeonato.file;
+    this.formulario.get('premiacao')?.setValue(this.formataPremiacao(String(campeonato.premiacao)));
+  }
+
+  formataPremiacao(premiacao: string){
+    return premiacao.replace(/^(\d{1})?(\d{3})?(\d{3})?(\d{2})/, '$1.$2.$3,$4');
   }
 
   onChange(event: any) {
@@ -141,7 +146,7 @@ export class CampeonatoFormComponent extends BaseFormComponent implements OnInit
     this.campeonatoDto.dataInicio = this.formulario.get('dataInicio')?.value;
     this.campeonatoDto.dataTermino = this.formulario.get('dataTermino')?.value;
     this.campeonatoDto.time = this.formulario.get('time')?.value;
-    this.campeonatoDto.premiacao = this.formulario.get('premiacao')?.value;
+    this.campeonatoDto.premiacao = Number(this.formulario.get('premiacao')?.value.replace(/[^\d]+/g,''));
     this.campeonatoDto.adm = this.formulario.get('adm')?.value;
     this.campeonatoDto.descricao = this.formulario.get('descricao')?.value;
     this.campeonatoDto.regra = this.formulario.get('regra')?.value;

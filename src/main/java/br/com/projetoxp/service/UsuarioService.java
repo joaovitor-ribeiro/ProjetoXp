@@ -30,17 +30,24 @@ public class UsuarioService {
 		return false;
 	}
 	
-	public UsuarioDto getUsuarioById(String nick) {
+	public Usuario getUsuarioById(String nick) {
 		Optional<Usuario> optionalUsuario = usuarioRepository.findByNick(nick);
 		if(optionalUsuario.isPresent()) {
 			Usuario usuario = optionalUsuario.get();
-			return usuario.converteUsuarioDto();
+			return usuario;
 		}
 		return null;
 	}
 	
-	public void atualizar( String nick, Usuario usuario){
-		usuario.atualizar(nick,usuarioRepository);
+	public boolean atualizar(String nick, Usuario usuario){
+		Optional<Usuario> usuarioId = usuarioRepository.findById(usuario.getId());
+		if(!usuario.getNick().equals(usuarioId.get().getNick())) {
+			if(!usuarioRepository.findByNick(usuario.getNick()).isEmpty()) {
+				return false;
+			}
+		}
+		usuario.atualizar(nick, usuarioRepository);
+		return true;
 	}
 	
 	public UsuarioDto login( String nick, String senha) {

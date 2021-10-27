@@ -130,6 +130,7 @@ export class CampeonatoFormComponent extends BaseFormComponent implements OnInit
         result =>{
           console.log(result);
           if(result == 3){
+            this.router.navigate(['campeonato']);
             this.openSnackBar('Campeonato cadastrado com sucesso');
           }else if(result == 1){
             this.openSnackBar('Nome já cadastrado');

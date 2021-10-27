@@ -37,8 +37,8 @@ export class MatchComponent implements OnInit {
             }else{
               this.matchDtoB?.push(result[i]);
             }
+            this.isLoading = false;
           }
-          this.isLoading = false;
         })
       })
     })

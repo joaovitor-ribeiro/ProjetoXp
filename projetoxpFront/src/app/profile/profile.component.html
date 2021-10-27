@@ -37,35 +37,35 @@
         <table mat-table [dataSource]="summonerDto$" class="mat-elevation-z8" style="width: 150vh!important;">
 
           <ng-container matColumnDef="champion">
-            <th mat-header-cell *matHeaderCellDef>Campeão</th>
+            <th mat-header-cell *matHeaderCellDef class="cabecalho">CAMPEÃO</th>
             <td mat-cell *matCellDef="let summoner" [ngStyle]="{'background-color': (summoner.win ? '#a3cfec' : '#e2b6b3')}">
               <img class="imagem" src="{{summoner.champion}}"/>
             </td>
           </ng-container>
 
           <ng-container matColumnDef="kda">
-            <th mat-header-cell *matHeaderCellDef>KDA</th>
+            <th mat-header-cell *matHeaderCellDef class="cabecalho">KDA</th>
             <td mat-cell *matCellDef="let summoner" [ngStyle]="{'background-color': (summoner.win ? '#a3cfec' : '#e2b6b3')}">
               {{ summoner.kills }} / {{ summoner.death }} / {{ summoner.assistis }}
             </td>
           </ng-container>
 
           <ng-container matColumnDef="cs">
-            <th mat-header-cell *matHeaderCellDef>CS</th>
+            <th mat-header-cell *matHeaderCellDef class="cabecalho">CS</th>
             <td mat-cell *matCellDef="let summoner" [ngStyle]="{'background-color': (summoner.win ? '#a3cfec' : '#e2b6b3')}">
               {{ summoner.totalMinionKilled }}
             </td>
           </ng-container>
 
           <ng-container matColumnDef="gameDuration">
-            <th mat-header-cell *matHeaderCellDef>Duração</th>
+            <th mat-header-cell *matHeaderCellDef class="cabecalho">DURAÇÃO</th>
             <td mat-cell *matCellDef="let summoner" [ngStyle]="{'background-color': (summoner.win ? '#a3cfec' : '#e2b6b3')}">
               {{ summoner.gameDuration }}
             </td>
           </ng-container>
 
           <ng-container matColumnDef="gameMode">
-            <th mat-header-cell *matHeaderCellDef>Modo De jogo</th>
+            <th mat-header-cell *matHeaderCellDef class="cabecalho">MODO DE JOGO</th>
             <td mat-cell *matCellDef="let summoner" [ngStyle]="{'background-color': (summoner.win ? '#a3cfec' : '#e2b6b3')}">
               {{ summoner.gameMode }}
             </td>

@@ -62,7 +62,7 @@ public class CampeonatoService {
 			Campeonato campeonatoId = campeonatoRepository.getById(id);
 			if(!campeonatoId.getNome().equals(campeonato.getNome())) {
 				List<Optional<Campeonato>> optionalCampeonato = campeonatoRepository.findByNome(campeonato.getNome());
-				if(optionalCampeonato.size() > 1) {
+				if(!optionalCampeonato.isEmpty()) {
 					return 1;
 				}
 			}
@@ -71,9 +71,8 @@ public class CampeonatoService {
 			Date date2;
 			Date dateHoje = new Date();
 
-			date1 = dateFormat.parse(campeonatoId.getDataInicio());
-			date2 = dateFormat.parse(campeonatoId.getDataTermino());
-
+			date1 = dateFormat.parse(campeonato.getDataInicio());
+			date2 = dateFormat.parse(campeonato.getDataTermino());
 			if(!(date1.compareTo(date2) < 0)  ||  !(dateHoje.compareTo(date2) < 0)){
 				return 2;
 			} 

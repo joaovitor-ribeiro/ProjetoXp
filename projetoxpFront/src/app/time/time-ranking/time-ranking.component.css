@@ -22,3 +22,8 @@
   display: flex!important;
   justify-content: center!important;
 }
+
+.cabecalho{
+  font-size: 15px;
+  color: black;
+}

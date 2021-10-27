@@ -60,5 +60,10 @@ public class TimeController {
 	public Time listarTimes(@PathVariable Long id, @PathVariable String timeCapitao) {
 		return timeService.findTime(id, timeCapitao);
 	}
+	
+	@RequestMapping(method = RequestMethod.GET, path = "/detalhes/{id}")
+	public Time getTimeDetalhes(@PathVariable Long id) {
+		return timeService.getTimeDetalhes(id);
+	}
 
 }

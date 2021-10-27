@@ -90,9 +90,8 @@ public class TimeService {
 	}
 
 	public int atualizarTimeNoCampeonato(Long id, String timeCapitao, Time time) {
-		int contador = 0;
+		int contador = 1;
 		List<Time> timeLista = timeRepository.findByCapitao(time.getCapitao());
-
 		for (Time time2 : timeLista) {
 			if(time2.getIdCampeonato() == id) {
 				contador++;
@@ -103,6 +102,10 @@ public class TimeService {
 		}
 		time.atualizar(id, timeCapitao, this);
 		return 1;
+	}
+
+	public Time getTimeDetalhes(Long id) {
+		return timeRepository.findById(id).get();
 	}
 
 }

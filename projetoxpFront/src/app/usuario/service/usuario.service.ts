@@ -19,8 +19,8 @@ export class UsuarioFormService {
     return this.http.post<boolean>(this.XP+'/cadastro', usuario);
   }
 
-  public atualizarUsuario(nick: string, usuario: UsuarioDto){
-    return this.http.put(this.XP+'/atualizar/' + nick, usuario).pipe(take(1));
+  public atualizarUsuario(nick: string, usuario: UsuarioDto): Observable<boolean>{
+    return this.http.put<boolean>(this.XP+'/atualizar/' + nick, usuario);
   }
 
   public getUsuarioNick(nick: string): Observable<UsuarioDto> {

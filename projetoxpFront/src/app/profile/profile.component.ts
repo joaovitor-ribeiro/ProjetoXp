@@ -41,7 +41,6 @@ export class ProfileComponent implements OnInit {
           if(result){
             this.summonerDto$ = of(result);
             this.carregaDados(result);
-            this.isLoading = false;
           }else{
             this.nickNaoEcontrado = true;
             this.isLoading = false;
@@ -53,18 +52,6 @@ export class ProfileComponent implements OnInit {
         this.isLoading = false;
       }
     });
-    // this.inscricao = this.route.data.subscribe(
-    //   (info) => {
-    //     if(info.profile == false){
-    //       this.semParemtro = true;
-    //     }else if(info.profile == null){
-    //       this.nickNaoEcontrado = true;
-    //     }else{
-    //       this.summonerDto$ = of(info.profile);
-    //       this.carregaDados(info.profile);
-    //     }
-    //   }
-    // );
   }
 
   ngOnDestroy(){
@@ -84,6 +71,7 @@ export class ProfileComponent implements OnInit {
     } catch (error) {
       this.name = '';
     }
+    this.isLoading = false;
   }
 
   venceu(win: any){

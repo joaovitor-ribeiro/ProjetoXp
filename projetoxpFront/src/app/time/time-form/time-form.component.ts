@@ -97,12 +97,13 @@ export class TimeFormComponent extends BaseFormComponent implements OnInit {
           if(result == 2){
             this.openSnackBar('Capitão já cadastrado nesse campeonato');
           }else{
-            this.openSnackBar('Time editado com sucesso');
+            this.openSnackBar('Time atualizado com sucesso');
             this.router.navigate(['campeonato/detalhes/', this.id]);
           }
         },
         );
       }else{
+        console.log(this.nameFile);
         if(this.nameFile != ''){
           this.onUpload();
         }

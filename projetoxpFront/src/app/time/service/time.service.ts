@@ -43,4 +43,8 @@ export class TimeService {
     return this.http.get<Time>(this.XP + '/' + id + '/' + timeCapitao);
   }
 
+  getTimeDetalhes(id: number){
+    return this.http.get<Time>(this.XP + '/detalhes/' + id);
+  }
+
 }

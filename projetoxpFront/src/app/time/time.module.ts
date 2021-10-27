@@ -9,13 +9,15 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatTableModule} from '@angular/material/table';
 import {MatSelectModule} from '@angular/material/select';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { TimeDetalhesComponent } from './time-detalhes/time-detalhes.component';
 
 
 
 @NgModule({
   declarations: [
     TimeFormComponent,
-    TimeRankingComponent
+    TimeRankingComponent,
+    TimeDetalhesComponent
   ],
   imports: [
     CommonModule,

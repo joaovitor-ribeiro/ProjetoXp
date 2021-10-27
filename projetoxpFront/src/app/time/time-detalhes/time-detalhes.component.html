@@ -1,0 +1,28 @@
+<div class="centralizar">
+<div style="width: 100vh!important;">
+<img *ngIf="time.file" class="img" src="../../../assets/time/{{time.file}}" style="width: 98%; height: 300px;">
+<img *ngIf="!time.file" class="img" src="../../../assets/time/timeDefault.png" style="width: 98%; height: 300px;">
+<div class="row" style="width: 95%;">
+  <div class="col s4" >
+    <p>Nome: {{time.nome}}</p>
+ </div>
+  <div class="col s4">
+    <p>Pontos: {{time.pontuacao}}</p>
+  </div>
+  <div class="col s4">
+    <p>Capitão: {{time.capitao}}</p>
+  </div>
+</div>
+  <table mat-table [dataSource]="jogadores" class="mat-elevation-z8" style="width: 100vh!important;">
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef class="cabecalho" style="text-align: center;"> Nome do Jogador </th>
+      <td mat-cell *matCellDef="let element" style="text-align: center;"> {{element}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  </table>
+</div>
+</div>

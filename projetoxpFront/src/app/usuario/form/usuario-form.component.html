@@ -25,7 +25,7 @@
       ></app-input-field>
     </div>
 
-    <div class="row">
+    <div *ngIf="!editar" class="row">
       <app-input-field class="input-field col s6" formControlName="senha" type="password"
       id="senha" label="Senha" [control]="formulario.get('senha')"
       ></app-input-field>
@@ -46,8 +46,8 @@
         </div>
       </div>
     </div>
-
-    <button type="submit" class="btn corFundo botao">Submit</button>
+    <button *ngIf="!editar" type="submit" class="btn corFundo botao">Cadastrar</button>
+    <button *ngIf="editar" type="submit" class="btn corFundo botao">Editar</button>
 
   </div>
 

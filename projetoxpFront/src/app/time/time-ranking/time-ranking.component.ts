@@ -28,12 +28,14 @@ export class TimeRankingComponent implements OnInit {
   somaPontuacao(){
     for (let i = 0; i < this.times.length; i++) {
       for (let j = i + 1; j < this.times.length; j++) {
-        if(this.times[i].timeCapitao == this.times[j].timeCapitao){
+        if(this.times[i].nome == this.times[j].nome){
           this.times[i].pontuacao = this.times[i].pontuacao + this.times[j].pontuacao;
+          this.times[i].file = this.times[j].file;
           let index = this.times.indexOf(this.times[j]);
           this.times.splice(index,1);
         }
       }
+      console.log(this.times);
     }
   }
 

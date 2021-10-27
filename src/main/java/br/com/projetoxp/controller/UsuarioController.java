@@ -24,19 +24,19 @@ public class UsuarioController {
 	private UsuarioService usuarioService;
 	
 	@RequestMapping(method = RequestMethod.POST, path = "cadastro")
-	public void cadastroUsuario(@RequestBody UsuarioDto usuarioDto) {
-		usuarioService.cadastrarUsuario(usuarioDto);
+	public boolean cadastroUsuario(@RequestBody UsuarioDto usuarioDto) {
+		return usuarioService.cadastrarUsuario(usuarioDto);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, path = "/editar/{nick}")
-	public UsuarioDto getUsuarioById(@PathVariable String nick) {
+	public Usuario getUsuarioById(@PathVariable String nick) {
 		return usuarioService.getUsuarioById(nick);
 	}
 	
 	@RequestMapping(method = RequestMethod.PUT, path = "/atualizar/{nick}")
 	@Transactional
-	public void atualizar(@PathVariable String nick, @RequestBody Usuario usuario){
-		usuarioService.atualizar(nick, usuario);
+	public boolean atualizar(@PathVariable String nick, @RequestBody Usuario usuario){
+		return usuarioService.atualizar(nick, usuario);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, path = "/login/{nick}/{senha}")

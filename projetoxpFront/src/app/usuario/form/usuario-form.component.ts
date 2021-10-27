@@ -49,12 +49,13 @@ export class UsuarioFormComponent extends BaseFormComponent implements OnInit {
 
     this.inscricao = this.route.data.subscribe(
       (usuario) => {
-        console.log(usuario);
         if(usuario.form != undefined){
           this.usuarioDto = (usuario.form);
           this.populaDadosForm(usuario.form);
           this.editar = true;
-          this.route.params.subscribe(params =>{
+          this.formulario.get('senha')?.disable();
+          this.formulario.get('confirmarSenha')?.disable();
+          this.route.params.subscribe(params => {
             this.nick = params['nick'];
           })
         }
@@ -63,7 +64,6 @@ export class UsuarioFormComponent extends BaseFormComponent implements OnInit {
   }
 
   populaDadosForm(usuario: UsuarioDto) {
-    console.log(usuario);
     this.formulario.patchValue({
       nome: usuario.nome,
       nick: usuario.nick,
@@ -94,15 +94,22 @@ export class UsuarioFormComponent extends BaseFormComponent implements OnInit {
   }
 
   submit() {
+    console.log('saggassdAsafsagahgdfhfgjhgkjhkhjgga');
     this.preenchendoUsuarioDto();
     if(this.editar){
       if(this.nameFile !== this.formulario.get('file')?.value){
         this.onUpload();
       }
+      console.log('testes');
       this.usuarioFormService.atualizarUsuario(this.nick,this.usuarioDto).subscribe(
-        sucess => (this.formulario.reset(),this.editar = false),
-        error => console.log('error'),
-        () => console.log('request completo')
+        result => {
+          if(result){
+           this.openSnackBar('Usuario atualizado com sucesso');
+           this.router.navigate(['login']);
+          }else{
+           this.openSnackBar('Usuario já cadastrado');
+          }
+        }
       );
     }else{
       if(this.nameFile !== this.formulario.get('file')?.value){
@@ -110,7 +117,7 @@ export class UsuarioFormComponent extends BaseFormComponent implements OnInit {
       }
       this.usuarioFormService.cadastroUsuario(this.usuarioDto).subscribe(
        result => {
-         if(!result){
+         if(result){
           this.openSnackBar('Usuario cadastrado com sucesso');
           this.router.navigate(['login']);
          }else{

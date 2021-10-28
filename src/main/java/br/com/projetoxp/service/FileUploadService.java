@@ -14,7 +14,7 @@ public class FileUploadService {
 	private String uploadFolderPath;
 	
 	public void uploadToLocal(MultipartFile file, String local) {
-		uploadFolderPath = "C:\\Users\\joaos\\Downloads\\projetoxp\\projetoxpFront\\src\\assets\\" + local + "\\";
+		uploadFolderPath = "C:\\Dev\\git\\times\\projetoxp\\projetoxpFront\\src\\assets\\" + local + "\\";
 		try {
 			byte[] data = file.getBytes();
 			Path path = Paths.get(uploadFolderPath + file.getOriginalFilename());

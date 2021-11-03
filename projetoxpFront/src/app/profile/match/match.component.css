@@ -34,3 +34,9 @@
   font-size: 15px;
   color: black;
 }
+
+.imagem{
+  width: 100px;
+  height: 100px;
+  float: left;
+}

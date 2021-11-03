@@ -109,18 +109,19 @@ public class MatchInformationClient {
 	}
 	
 	public String achandoTempoDePartida(Long gameDuration) {
-		int horas 			  = (int) (gameDuration / 3600000);
-        int minutos           = (int) (gameDuration - (horas * 3600)) / 60000;
-        float segundos        = (float) (gameDuration - (minutos * 3600)) / 60;
-        String segundosString = segundos + "";
+		int segundos = Integer.parseInt(gameDuration+"");
+		int horas = segundos / 3600;
+		segundos %= 3600;
+		int minutos = segundos / 60;
+		segundos %= 60;
         
-        segundosString = segundosString.substring(0,2);
-        
-        if(horas != 0) {
-        	return horas + "h " + minutos + "min " + segundosString + "s";
-        }
-        
-        return  minutos + "min " + segundosString + "s";
+		if(horas != 0) {
+        	return horas + "h " + minutos + "min " + segundos + "s";
+        }else if(segundos != 0) {
+			return  minutos + "min " + segundos + "s";
+		}
+		
+		return  minutos + "min";
 	}
 	
 	private String venceu(String name, Match match) {

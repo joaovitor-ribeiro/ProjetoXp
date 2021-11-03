@@ -23,34 +23,35 @@
       <ng-container matColumnDef="champion">
         <th mat-header-cell *matHeaderCellDef class="cabecalho">CAMPEÃO</th>
         <td mat-cell *matCellDef="let match" [ngStyle]="{'background-color': (match.win ? '#a3cfec' : '#e2b6b3')}">
-          <img class="imagem" src="{{match.urlChampion}}"/>
+          <img *ngIf="!match.urlChampion.includes('Vex')" class="imagem" src="{{match.urlChampion}}"/>
+          <img *ngIf="match.urlChampion.includes('Vex')" class="imagem" src="../../../assets/vex.jpg"/>
         </td>
       </ng-container>
 
       <ng-container matColumnDef="nome">
-        <th mat-header-cell *matHeaderCellDef class="cabecalho">NOME</th>
-        <td mat-cell *matCellDef="let match" [ngStyle]="{'background-color': (match.win ? '#a3cfec' : '#e2b6b3')}">
+        <th mat-header-cell *matHeaderCellDef class="cabecalho" style="text-align: center;">NOME</th>
+        <td mat-cell *matCellDef="let match" [ngStyle]="{'background-color': (match.win ? '#a3cfec' : '#e2b6b3')}"  style="text-align: center;">
           {{ match.summonerName }}
         </td>
       </ng-container>
 
       <ng-container matColumnDef="kda">
-        <th mat-header-cell *matHeaderCellDef class="cabecalho">KDA</th>
-        <td mat-cell *matCellDef="let match" [ngStyle]="{'background-color': (match.win ? '#a3cfec' : '#e2b6b3')}">
+        <th mat-header-cell *matHeaderCellDef class="cabecalho"  style="text-align: center;">KDA</th>
+        <td mat-cell *matCellDef="let match" [ngStyle]="{'background-color': (match.win ? '#a3cfec' : '#e2b6b3')}"  style="text-align: center;">
           {{ match.kills }} / {{ match.death }} / {{ match.assists}}
         </td>
       </ng-container>
 
       <ng-container matColumnDef="cs">
-        <th mat-header-cell *matHeaderCellDef class="cabecalho">CS</th>
-        <td mat-cell *matCellDef="let match" [ngStyle]="{'background-color': (match.win ? '#a3cfec' : '#e2b6b3')}">
+        <th mat-header-cell *matHeaderCellDef class="cabecalho"  style="text-align: center;">CS</th>
+        <td mat-cell *matCellDef="let match" [ngStyle]="{'background-color': (match.win ? '#a3cfec' : '#e2b6b3')}"  style="text-align: center;">
           {{ match.totalMinionsKilled }}
         </td>
       </ng-container>
 
       <ng-container matColumnDef="item">
-        <th mat-header-cell *matHeaderCellDef class="cabecalho">ITENS</th>
-        <td mat-cell *matCellDef="let match" [ngStyle]="{'background-color': (match.win ? '#a3cfec' : '#e2b6b3')}">
+        <th mat-header-cell *matHeaderCellDef class="cabecalho" style="text-align: center;">ITENS</th>
+        <td mat-cell *matCellDef="let match" [ngStyle]="{'background-color': (match.win ? '#a3cfec' : '#e2b6b3')}"  style="text-align: center;">
           <img *ngIf="match.item0 != '0'" class="img itemIcon" src="{{match.item0}}">
           <img *ngIf="match.item1 != '0'" class="img itemIcon" src="{{match.item1}}">
           <img *ngIf="match.item2 != '0'" class="img itemIcon" src="{{match.item2}}">
@@ -76,36 +77,37 @@
     <table mat-table [dataSource]="matchDtoB" class="mat-elevation-z8" style="width: 150vh;">
 
       <ng-container matColumnDef="champion">
-        <th mat-header-cell *matHeaderCellDef>Campeão</th>
+        <th mat-header-cell *matHeaderCellDef class="cabecalho">CAMPEÃO</th>
         <td mat-cell *matCellDef="let match" [ngStyle]="{'background-color': (match.win ? '#a3cfec' : '#e2b6b3')}">
-          <img class="imagem" src="{{match.urlChampion}}"/>
+          <img *ngIf="!match.urlChampion.includes('Vex')" class="imagem" src="{{match.urlChampion}}"/>
+          <img *ngIf="match.urlChampion.includes('Vex')" class="imagem" src="../../../assets/vex.jpg"/>
         </td>
       </ng-container>
 
       <ng-container matColumnDef="nome">
-        <th mat-header-cell *matHeaderCellDef>Nome</th>
-        <td mat-cell *matCellDef="let match" [ngStyle]="{'background-color': (match.win ? '#a3cfec' : '#e2b6b3')}">
+        <th mat-header-cell *matHeaderCellDef class="cabecalho" style="text-align: center;">NOME</th>
+        <td mat-cell *matCellDef="let match" [ngStyle]="{'background-color': (match.win ? '#a3cfec' : '#e2b6b3')}" style="text-align: center;">
           {{ match.summonerName }}
         </td>
       </ng-container>
 
       <ng-container matColumnDef="kda">
-        <th mat-header-cell *matHeaderCellDef>KDA</th>
-        <td mat-cell *matCellDef="let match" [ngStyle]="{'background-color': (match.win ? '#a3cfec' : '#e2b6b3')}">
+        <th mat-header-cell *matHeaderCellDef class="cabecalho" style="text-align: center;">KDA</th>
+        <td mat-cell *matCellDef="let match" [ngStyle]="{'background-color': (match.win ? '#a3cfec' : '#e2b6b3')}" style="text-align: center;">
           {{ match.kills }} / {{ match.death }} / {{ match.assists}}
         </td>
       </ng-container>
 
       <ng-container matColumnDef="cs">
-        <th mat-header-cell *matHeaderCellDef>CS</th>
-        <td mat-cell *matCellDef="let match" [ngStyle]="{'background-color': (match.win ? '#a3cfec' : '#e2b6b3')}">
+        <th mat-header-cell *matHeaderCellDef class="cabecalho" style="text-align: center;">CS</th>
+        <td mat-cell *matCellDef="let match" [ngStyle]="{'background-color': (match.win ? '#a3cfec' : '#e2b6b3')}" style="text-align: center;">
           {{ match.totalMinionsKilled }}
         </td>
       </ng-container>
 
       <ng-container matColumnDef="item">
-        <th mat-header-cell *matHeaderCellDef>Itens</th>
-        <td mat-cell *matCellDef="let match" [ngStyle]="{'background-color': (match.win ? '#a3cfec' : '#e2b6b3')}">
+        <th mat-header-cell *matHeaderCellDef class="cabecalho" style="text-align: center;">ITENS</th>
+        <td mat-cell *matCellDef="let match" [ngStyle]="{'background-color': (match.win ? '#a3cfec' : '#e2b6b3')}" style="text-align: center">
           <img *ngIf="match.item0 != '0'" class="img itemIcon" src="{{match.item0}}">
           <img *ngIf="match.item1 != '0'" class="img itemIcon" src="{{match.item1}}">
           <img *ngIf="match.item2 != '0'" class="img itemIcon" src="{{match.item2}}">

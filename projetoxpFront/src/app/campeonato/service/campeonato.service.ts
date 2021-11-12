@@ -23,4 +23,8 @@ export class CampeonatoService {
     return this.http.get<CampeonatoDto>(this.XP+'/retorna/' + id);
   }
 
+  getCampeonatoByIdTime(id: number): Observable<Campeonato[]> {
+    return this.http.get<Campeonato[]>(this.XP + `/time/${id}`);
+  }
+
 }

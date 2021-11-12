@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { take } from "rxjs/operators";
+import { Campeonato } from "src/app/campeonato/model/campeonato.model";
 import { TimesParticipantes } from "src/app/campeonato/model/TimesParticipates.model";
 import { environment } from "src/environments/environment";
 import { Time } from "../model/time.model";

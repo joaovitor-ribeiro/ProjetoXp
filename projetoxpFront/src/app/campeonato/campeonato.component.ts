@@ -1,4 +1,3 @@
-import { CampeonatoService } from './service/campeonato.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, of, Subscription } from 'rxjs';
@@ -18,7 +17,6 @@ export class CampeonatoComponent implements OnInit {
   usuario!: any;
 
   constructor(
-    private camopeonatoService: CampeonatoService,
     private route: ActivatedRoute,
     private router: Router,
     private login: AuthenticationService,

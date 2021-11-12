@@ -1,0 +1,11 @@
+.img{
+  width: 340px;
+  height: 170px;
+}
+.centralizar {
+  display: flex!important;
+  justify-content: center!important;
+}
+.color{
+  color: #2196F3!important;
+}

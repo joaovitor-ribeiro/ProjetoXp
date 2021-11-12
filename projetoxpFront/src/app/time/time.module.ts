@@ -1,3 +1,4 @@
+import { TimeResolver } from './guards/time.resolver';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TimeFormComponent } from './time-form/time-form.component';
@@ -11,6 +12,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { TimeDetalhesComponent } from './time-detalhes/time-detalhes.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { TimeComponent } from './time.component';
 
 
 
@@ -18,7 +20,8 @@ import { MatTabsModule } from '@angular/material/tabs';
   declarations: [
     TimeFormComponent,
     TimeRankingComponent,
-    TimeDetalhesComponent
+    TimeDetalhesComponent,
+    TimeComponent,
   ],
   imports: [
     CommonModule,
@@ -31,6 +34,10 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatSnackBarModule,
     MatTableModule,
     MatTabsModule,
+    MatSnackBarModule
+  ],
+  providers:[
+    TimeResolver
   ]
 })
 export class TimeModule { }

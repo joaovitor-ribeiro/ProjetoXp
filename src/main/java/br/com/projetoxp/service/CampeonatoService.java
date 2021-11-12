@@ -1,6 +1,7 @@
 package br.com.projetoxp.service;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -9,14 +10,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.projetoxp.model.Campeonato;
+import br.com.projetoxp.model.Time;
+import br.com.projetoxp.model.TimesCampeonato;
 import br.com.projetoxp.model.dto.CampeonatoDto;
 import br.com.projetoxp.repository.CampeoantoRepository;
+import br.com.projetoxp.repository.TimeRepository;
+import br.com.projetoxp.repository.TimesCampeonatoRepository;
 
 @Service
 public class CampeonatoService {
 	
 	@Autowired
 	private CampeoantoRepository campeonatoRepository;
+	
+	@Autowired
+	private TimeRepository timeRepository;
+	
+	@Autowired
+	private TimesCampeonatoRepository timesCampeonatoRepository;
 	
 	public int cadastrarCampeonato(CampeonatoDto campeonatoDto) {
 		try {
@@ -82,6 +93,23 @@ public class CampeonatoService {
 			e.printStackTrace();
 		}
 		return 1;
+	}
+
+	public List<Campeonato> getCampeonatByIdCapitao(Long id) {
+		List<Campeonato> campeonatos = new ArrayList<Campeonato>();
+		Time time = timeRepository.getById(id);
+		String capitao = time.getCapitao();
+		
+		List<TimesCampeonato> timesCampeonatos = timesCampeonatoRepository.findByCapitao(capitao);
+		if(!timesCampeonatos.isEmpty()) {
+			timesCampeonatos.forEach(timeCampeonato -> {
+				Optional<Campeonato> OptionalCampeonato = campeonatoRepository.findById(timeCampeonato.getIdCampeonato());
+				if(!OptionalCampeonato.isEmpty()) {
+					campeonatos.add(OptionalCampeonato.get());
+				}
+			});
+		}
+		return campeonatos;
 	}
 	
 }

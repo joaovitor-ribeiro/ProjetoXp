@@ -11,6 +11,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatSelectModule} from '@angular/material/select';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { TimeDetalhesComponent } from './time-detalhes/time-detalhes.component';
+import { MatTabsModule } from '@angular/material/tabs';
 import { TimeComponent } from './time.component';
 
 
@@ -28,9 +29,11 @@ import { TimeComponent } from './time.component';
     ReactiveFormsModule,
     SharedModule,
     MatSidenavModule,
-    MatTableModule,
     MatSelectModule,
     TimeRoutingModule,
+    MatSnackBarModule,
+    MatTableModule,
+    MatTabsModule,
     MatSnackBarModule
   ],
   providers:[

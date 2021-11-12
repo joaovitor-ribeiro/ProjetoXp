@@ -60,6 +60,7 @@ export class ProfileComponent implements OnInit {
 
   search( name: string) {
     this.router.navigate([ '/profile' , name.toLowerCase().replace(" ","")]);
+    this.isLoading = true;
   }
 
   carregaDados(info: any){

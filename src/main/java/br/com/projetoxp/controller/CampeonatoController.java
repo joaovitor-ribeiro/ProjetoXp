@@ -45,4 +45,9 @@ public class CampeonatoController {
 		return campeonatoService.atualizar(id, campeonato);
 	}
 	
+	@RequestMapping(method = RequestMethod.GET, path = "/time/{id}")
+	public List<Campeonato> getCampeonatByIdCapitao(@PathVariable Long id){
+		return campeonatoService.getCampeonatByIdCapitao(id);
+	}
+	
 }

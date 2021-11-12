@@ -13,8 +13,11 @@
 
 <div *ngIf="!isLoading">
   <div style="text-align: center;" >
-      <h3>{{ venceu }}</h3>
-      Duração: {{ tempoDePartida }}
+      <img *ngIf="!venceu" src="../../../assets/defeat.png"/>
+      <img *ngIf="venceu" src="../../../assets/victory.png"/>
+  </div>
+  <div style="text-align: center;" >
+    <span style="font-size: 18px;">Duração: {{ tempoDePartida }}</span>
   </div>
   <div class="centralizar">
   <mat-drawer-container class="example-container">

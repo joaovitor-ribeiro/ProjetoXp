@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
+import { AfterContentChecked, Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { take } from 'rxjs/operators';
 import { AuthenticationService } from './usuario/service/authentication.service';
 
 @Component({
@@ -8,16 +7,14 @@ import { AuthenticationService } from './usuario/service/authentication.service'
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements AfterContentChecked{
   title = 'projetoxpFront';
   usuario: any = '';
   constructor(public loginService: AuthenticationService, private route: ActivatedRoute){
-    this.route.url.pipe(take(1)).subscribe( result => {
-      if(loginService.getSessionNick()){
-        this.usuario = loginService.getSessionNick();
-      }
-    });
-
+    this.usuario = sessionStorage.getItem('username');
+  }
+  ngAfterContentChecked(): void {
+    this.usuario = sessionStorage.getItem('username');
   }
 
 }

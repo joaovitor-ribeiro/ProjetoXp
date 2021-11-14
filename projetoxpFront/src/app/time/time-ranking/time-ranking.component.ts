@@ -35,7 +35,6 @@ export class TimeRankingComponent implements OnInit {
           this.times.splice(index,1);
         }
       }
-      console.log(this.times);
     }
   }
 

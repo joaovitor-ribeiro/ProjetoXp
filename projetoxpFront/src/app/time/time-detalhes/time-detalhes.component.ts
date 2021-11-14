@@ -28,7 +28,6 @@ export class TimeDetalhesComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    debugger
     this.usuario = this.loginService.getSessionNick();
     this.route.params.subscribe(result => {
       this.timeService.getTimeDetalhes(Number(result.id)).subscribe(time => {

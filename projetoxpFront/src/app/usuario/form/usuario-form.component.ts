@@ -7,6 +7,7 @@ import { UploadFileService } from 'src/app/campeonato/service/upload-file.servic
 import { BaseFormComponent } from 'src/app/shared/base-form/base-form.component';
 import { FormValidations } from 'src/app/shared/form-validations';
 import { UsuarioDto } from '../model/usuarioDto.model';
+import { AuthenticationService } from '../service/authentication.service';
 import { UsuarioFormService } from '../service/usuario.service';
 
 @Component({
@@ -31,7 +32,8 @@ export class UsuarioFormComponent extends BaseFormComponent implements OnInit {
     private service: UploadFileService,
     private route: ActivatedRoute,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private loginService: AuthenticationService,
   ) {
     super();
   }
@@ -94,18 +96,18 @@ export class UsuarioFormComponent extends BaseFormComponent implements OnInit {
   }
 
   submit() {
-    console.log('saggassdAsafsagahgdfhfgjhgkjhkhjgga');
     this.preenchendoUsuarioDto();
     if(this.editar){
       if(this.nameFile !== this.formulario.get('file')?.value){
         this.onUpload();
       }
-      console.log('testes');
       this.usuarioFormService.atualizarUsuario(this.nick,this.usuarioDto).subscribe(
         result => {
           if(result){
            this.openSnackBar('Usuario atualizado com sucesso');
-           this.router.navigate(['login']);
+           sessionStorage.removeItem('username');
+           sessionStorage.setItem('username', this.usuarioDto.nick);
+           this.router.navigate(['campeonato']);
           }else{
            this.openSnackBar('Usuario já cadastrado');
           }

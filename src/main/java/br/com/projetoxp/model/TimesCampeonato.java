@@ -5,6 +5,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import br.com.projetoxp.repository.TimesCampeonatoRepository;
+import br.com.projetoxp.service.TimeService;
+
 @Entity
 public class TimesCampeonato {
 	
@@ -79,6 +82,16 @@ public class TimesCampeonato {
 
 	public void setCapitao(String capitao) {
 		this.capitao = capitao;
+	}
+
+	public void atualizar(Long id, String timeCapitao, TimeService timeService) {
+	}
+
+	public void atualizar(Time time, TimesCampeonatoRepository timesCampeonatoRepository) {
+		TimesCampeonato times = timesCampeonatoRepository.findById(id).get();
+		times.setCapitao(time.getCapitao());
+		times.setNomeTime(time.getNome());
+		times.setTimeCapitao(time.getTimeCapitao());
 	}
 
 }

@@ -28,7 +28,9 @@ export class ProfileComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private profileService: ProfileService
-  ) { }
+  ) {
+    this.isLoading = true;
+  }
 
   ngOnInit(){
     this.isLoading = true;
@@ -37,7 +39,6 @@ export class ProfileComponent implements OnInit {
     this.inscricao = this.route.params.subscribe( params => {
       if(params['name']){
         this.profileService.getSummoner(params['name']).subscribe(result =>{
-          console.log(result);
           if(result){
             this.summonerDto$ = of(result);
             this.carregaDados(result);

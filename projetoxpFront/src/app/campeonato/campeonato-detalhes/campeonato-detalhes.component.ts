@@ -34,6 +34,7 @@ export class CampeonatoDetalhesComponent  implements OnInit, OnDestroy {
   myMap = new Map();
   edit = false;
   usuario!: any;
+  editarTime = false;
 
   constructor(
     private timeService: TimeService,
@@ -56,7 +57,6 @@ export class CampeonatoDetalhesComponent  implements OnInit, OnDestroy {
         })
       }
     );
-    console.log(this.campeonatoDto.file);
   }
 
   ngOnDestroy(): void {
@@ -65,6 +65,11 @@ export class CampeonatoDetalhesComponent  implements OnInit, OnDestroy {
 
   preencheTimesParticipantes(result: TimesParticipantes[]): void {
     this.timesParticipantes = result;
+    this.timesParticipantes.forEach(time => {
+      if(!this.editarTime){
+        this.editarTime = time.posicao == 1;
+      }
+    })
     this.tamanho = result.length;
     if(result.length == this.campeonatoDto.time){
       this.cadastrarTime = true;
@@ -92,6 +97,9 @@ export class CampeonatoDetalhesComponent  implements OnInit, OnDestroy {
     if(index == 0){
       this.rodada = this.quantidadeTime / 2;
     }else if(this.rodada > 1){
+      if(!(this.rodada % 2 == 0)){
+        this.rodada++;
+      }
       this.rodada = this.rodada / 2;
     }
     return new Array(this.rodada);

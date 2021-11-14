@@ -47,8 +47,6 @@ export class AuthenticationService {
     } else {
       return false;
     }
-
-
   }
 
   getSessionNick() {

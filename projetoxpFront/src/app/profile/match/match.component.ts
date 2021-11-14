@@ -43,7 +43,7 @@ export class MatchComponent implements OnInit {
           }
           setTimeout(() => {
             this.isLoading = false
-          }, 2100);
+          }, 3500);
         })
       })
     })

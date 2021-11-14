@@ -20,5 +20,4 @@ export class LogoutComponent implements OnInit {
     this.router.navigate(['login']);
   }
 
-
 }

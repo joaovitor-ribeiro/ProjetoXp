@@ -103,13 +103,11 @@ export class TimeFormComponent extends BaseFormComponent implements OnInit {
         },
         );
       }else{
-        console.log(this.nameFile);
         if(this.nameFile != ''){
           this.onUpload();
         }
         this.timeService.cadastrarTime(this.id, this.time).subscribe(
           result => {
-          console.log(result);
           if(result == 2){
             this.openSnackBar('Capitão já cadastrado nesse campeonato');
           }else{

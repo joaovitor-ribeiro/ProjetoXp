@@ -58,7 +58,6 @@ export class CampeonatoFormComponent extends BaseFormComponent implements OnInit
       });
       this.inscricao = this.route.data.subscribe(
         (campeonato) => {
-          console.log(campeonato);
           if(campeonato.form != undefined){
             this.campeonatoDto = (campeonato.form);
             this.populaDadosForm(campeonato.form);
@@ -111,7 +110,6 @@ export class CampeonatoFormComponent extends BaseFormComponent implements OnInit
       }
       this.campeonatoFormService.atualizarCampeonato(this.id, this.campeonatoDto).subscribe(
         result =>{
-          console.log(result);
           if(result == 3){
             this.router.navigate(['campeonato']);
             this.openSnackBar('Campeonato atualizado com sucesso')
@@ -128,7 +126,6 @@ export class CampeonatoFormComponent extends BaseFormComponent implements OnInit
       }
       this.campeonatoFormService.cadastroCampeonato(this.campeonatoDto).subscribe(
         result =>{
-          console.log(result);
           if(result == 3){
             this.router.navigate(['campeonato']);
             this.openSnackBar('Campeonato cadastrado com sucesso');

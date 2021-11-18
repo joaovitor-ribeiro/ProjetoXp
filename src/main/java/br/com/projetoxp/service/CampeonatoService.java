@@ -35,24 +35,27 @@ public class CampeonatoService {
 			if(optionalCampeonato.isEmpty()) {
 				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 				
-				Date date1;
-				Date date2;
-				Date dateHoje = new Date();
+				String date1;
+				String date2;
+				String dateHoje;
 				
-				date1 = dateFormat.parse(campeonatoDto.getDataInicio());
-				date2 = dateFormat.parse(campeonatoDto.getDataTermino());
+				date1 = dateFormat.format(dateFormat.parse(campeonatoDto.getDataInicio()));
+				date2 = dateFormat.format(dateFormat.parse(campeonatoDto.getDataTermino()));
+				dateHoje = dateFormat.format(new Date());
 				
-				if(!(date1.compareTo(date2) < 0)  ||  !(dateHoje.compareTo(date2) < 0)){
+				if(!(date1.compareTo(date2) <= 0)  ||  !(dateHoje.compareTo(date2) <= 0)){
 					return 2;
 				} 
 				Campeonato campeonato = campeonatoDto.converteCampeonato();
 				campeonatoRepository.save(campeonato);
 				return 3;
+			}else {
+				return 1;
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
+			return 0;
 		}
-		return 1;
 	}
 	
 	public List<Campeonato> listarCampeonatos() {
@@ -74,21 +77,9 @@ public class CampeonatoService {
 			if(!campeonatoId.getNome().equals(campeonato.getNome())) {
 				List<Optional<Campeonato>> optionalCampeonato = campeonatoRepository.findByNome(campeonato.getNome());
 				if(!optionalCampeonato.isEmpty()) {
-					return 1;
+					return 3;
 				}
 			}
-			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-			Date date1;
-			Date date2;
-			Date dateHoje = new Date();
-
-			date1 = dateFormat.parse(campeonato.getDataInicio());
-			date2 = dateFormat.parse(campeonato.getDataTermino());
-			if(!(date1.compareTo(date2) < 0)  ||  !(dateHoje.compareTo(date2) < 0)){
-				return 2;
-			} 
-			campeonato.atualizar(id, campeonatoRepository);
-			return 3;
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

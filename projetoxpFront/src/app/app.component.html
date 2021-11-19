@@ -5,7 +5,8 @@
     <div class="background">
       <img style="width: 100%; height: 100%;" src="../assets/campeonato/campeonatoDefault.jpg">
     </div>
-    <a *ngIf="loginService.isUserLoggedIn()"><img class="circle" src="../assets/usuario/{{loginService.getSessionFile()}}"></a>
+    <a *ngIf="loginService.isUserLoggedIn() && !foto"><img class="circle" src="../assets/usuario/usuarioDefault.png"></a>
+    <a *ngIf="loginService.isUserLoggedIn() && foto"><img class="circle" src="../assets/usuario/{{foto}}"></a>
     <a *ngIf="!loginService.isUserLoggedIn()"><img class="circle" src="../assets/usuario/usuarioDefault.png"></a>
     <span *ngIf="loginService.getSessionNick()" class="white-text name">{{usuario}}</span>
     <span *ngIf="!loginService.getSessionNick()" class="white-text name">Usuário</span>

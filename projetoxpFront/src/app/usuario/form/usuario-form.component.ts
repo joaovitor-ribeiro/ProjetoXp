@@ -107,6 +107,8 @@ export class UsuarioFormComponent extends BaseFormComponent implements OnInit {
            this.openSnackBar('Usuario atualizado com sucesso');
            sessionStorage.removeItem('username');
            sessionStorage.setItem('username', this.usuarioDto.nick);
+           sessionStorage.removeItem('file');
+           sessionStorage.setItem('file', this.usuarioDto.file);
            this.router.navigate(['campeonato']);
           }else{
            this.openSnackBar('Usuario já cadastrado');

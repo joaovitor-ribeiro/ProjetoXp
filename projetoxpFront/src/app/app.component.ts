@@ -10,11 +10,13 @@ import { AuthenticationService } from './usuario/service/authentication.service'
 export class AppComponent implements AfterContentChecked{
   title = 'projetoxpFront';
   usuario: any = '';
+  foto: any = '';
   constructor(public loginService: AuthenticationService, private route: ActivatedRoute){
-    this.usuario = sessionStorage.getItem('username');
+
   }
   ngAfterContentChecked(): void {
     this.usuario = sessionStorage.getItem('username');
+    this.foto = sessionStorage.getItem('file');
   }
 
 }

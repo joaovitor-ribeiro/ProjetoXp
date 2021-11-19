@@ -76,7 +76,8 @@ public class CampeonatoService {
 			Campeonato campeonatoId = campeonatoRepository.getById(id);
 			if(!campeonatoId.getNome().equals(campeonato.getNome())) {
 				List<Optional<Campeonato>> optionalCampeonato = campeonatoRepository.findByNome(campeonato.getNome());
-				if(!optionalCampeonato.isEmpty()) {
+				if(optionalCampeonato.isEmpty()) {
+					campeonato.atualizar(id, campeonatoRepository);
 					return 3;
 				}
 			}

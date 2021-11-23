@@ -3,10 +3,10 @@
     <div class="col m4">
       <div class="card">
         <div class="card-image">
-          <a href="/time/detalhes/{{time.id}}">
+          <a href="/time/{{time.id}}/detalhes">
             <img class="img" *ngIf="time.file != ''" src="../../assets/time/{{time.file}}">
           </a>
-          <a href="/time/detalhes/{{time.id}}">
+          <a href="/time/{{time.id}}/detalhes">
             <img class="img" *ngIf="time.file == ''" src="../../assets/time/timeDefault.png">
           </a>
           <span class="card-title" style="color: #ffffff;">{{time.nome.toUpperCase()}}</span>
@@ -19,7 +19,6 @@
         </div>
         <div *ngIf="time.capitao == nick" class="card-action color">
           <a class="color" href="/time/{{time.id}}/detalhes">Detalhes</a>
-          <a class="color" href="/time/{{time.id}}/editar/{{time.nome}}{{login.getSessionNick()}}">Editar</a>
         </div>
         <div *ngIf="time.capitao != nick" class="card-action color">
           <a class="color" href="/time/{{time.id}}/detalhes">Detalhes</a>
